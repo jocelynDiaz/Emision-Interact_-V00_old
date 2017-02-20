@@ -1,0 +1,6 @@
+﻿RunAction "ATC_Genera_Carpeta_Evidencias", oneIteration
+RunAction "ATC_Genera_Carpeta_Evidencias_Issue", oneIteration
+RunAction "ATC_Genera_Carpeta_Evidencias_Remove_SSR", oneIteration
+RunAction "ATC_Genera_Carpeta_Evidencias_Pricing_Manual", oneIteration
+RunAction "ATC_Genera_Carpeta_Evidencias_Seat_Modification", oneIteration
+RunAction "ATC_Genera_Carpeta_Evidencias_ReIssue", oneIteration

@@ -1,0 +1,78 @@
+[General]
+Type=Tulip
+RunType=ActiveScript
+DefaultCfg=default.cfg
+DefaultRunLogic=default.usp
+ParamRightBrace=>
+ParamLeftBrace=<
+NewFunctionHeader=1
+MinorVersion=0
+MajorVersion=6	
+DevelopTool=AQT
+
+[Actions]
+Action0=Action0\Script.mts
+ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]=Action1\Script.mts
+ATC_Terminar_Transaccion(Ignorar_Y_Cerrar) [ATC_Terminar_Transaccion(Ignorar_Y_Cerrar)]=Action1\Script.mts
+ATC_Emision_Issue [ATC_Emision_Issue]=Action1\Script.mts
+ATC_Visualizar_Ticket [ATC_Visualizar_Ticket]=Action1\Script.mts
+ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]=Action5\Script.mts
+ATC_OAC_AAA_Sabre_Interact [ATC_Login_Interact]=Action4\Script.mts
+ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]=Action3\Script.mts
+ATC_Genera_Carpeta_Evidencias_Issue [ATC_Genera_Carpetas_Evidencias]=Action2\Script.mts
+
+[VuserProfiles]
+Profiles=Default Profile
+
+[CfgFiles]
+Default Profile=default.cfg
+
+[RunLogicFiles]
+Default Profile=default.usp
+
+[Rendezvous]
+
+[Transactions]
+
+[ActiveScript]
+Lang=none
+
+[TulipInfo]
+ProductName=HP Unified Functional Testing
+Version=12.02
+
+[TulipAddins]
+ActiveX=
+Database=
+File Content=
+Insight=
+Java=
+Mobile=
+Windows Applications=
+TEA=
+Visual Basic=
+Web=
+XML=
+
+[ExtraFiles]
+Test.tsp=
+Default.xls=
+Parameters.mtr=
+Action0\Script.mts=
+Action0\Resource.mtr=
+Action0\ObjectRepository.bdb=
+Action1\Script.mts=
+Action1\Resource.mtr=
+Action1\ObjectRepository.bdb=
+Action5\Script.mts=
+Action5\Resource.mtr=
+Action5\ObjectRepository.bdb=
+Action4\Script.mts=
+Action4\Resource.mtr=
+Action4\ObjectRepository.bdb=
+Action3\Script.mts=
+Action3\Resource.mtr=
+Action3\ObjectRepository.bdb=
+Action2\Script.mts=
+Action2\Resource.mtr=
+Action2\ObjectRepository.bdb=

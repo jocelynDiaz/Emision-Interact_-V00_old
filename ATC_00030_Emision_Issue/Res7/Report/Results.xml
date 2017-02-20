@@ -1,0 +1,2993 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE Report
+[
+<!ELEMENT Report (General ,(Doc|BPT)) >
+<!ATTLIST Report ver CDATA #REQUIRED tmZone CDATA #REQUIRED>
+
+<!ELEMENT General ( DocLocation ) >
+<!ATTLIST General productName CDATA #REQUIRED productVer CDATA #REQUIRED os CDATA #REQUIRED host CDATA #REQUIRED qcserver CDATA #IMPLIED qcproject CDATA #IMPLIED SolManSolutionId CDATA #IMPLIED SolManProjectId CDATA #IMPLIED SolManTestPlanId CDATA #IMPLIED SolManTestPackageId CDATA #IMPLIED SolManUserInfoData CDATA #IMPLIED  >
+
+<!ELEMENT BPT (DName,Res,DVer?,TSet?,TInst?,NodeArgs,AdditionalInfo*,Doc*) >
+<!ATTLIST BPT rID ID #REQUIRED >
+
+<!ELEMENT Doc (DName,ConfName?,Res,DVer?,TSet?,TInst?,RunType?,DT?,AdditionalInfo*,Step*,DIter*,Step*,Action*,Doc*,Summary?,TestMaintenanceSummary*,NodeArgs?) >
+<!ATTLIST Doc rID ID #REQUIRED type (Test|BC|BPTWrapperTest|Flow|Group|Action) "Test" productName CDATA #REQUIRED BCIter CDATA #IMPLIED >
+
+<!ELEMENT RunType ( #PCDATA )>
+<!ATTLIST RunType fmStep (False|True) "False" batch (False|True) "False" upDesc (False|True) "False" upChk (False|True) "False" upAS (False|True) "False">
+
+<!ELEMENT DName ( #PCDATA ) >
+
+<!ELEMENT ConfName ( #PCDATA ) >
+
+<!ELEMENT Res ( #PCDATA ) >
+
+<!ELEMENT AdditionalInfo (AdditionalDataName,AdditionalDataValue ) >
+
+<!ELEMENT AdditionalDataName ( #PCDATA ) >
+
+<!ELEMENT AdditionalDataValue ( #PCDATA ) >
+
+<!ELEMENT DVer ( #PCDATA ) >
+
+<!ELEMENT TSet ( #PCDATA ) >
+
+<!ELEMENT TInst ( #PCDATA ) >
+
+<!ELEMENT DIter (Step*,Action+,Summary?,NodeArgs)>
+<!ATTLIST DIter rID ID #REQUIRED iterID CDATA #REQUIRED>
+
+<!ELEMENT DocLocation ( #PCDATA )>
+
+<!ELEMENT Action (AName,AIter*,(Step|HtmlStep|Action)*, Summary,ActionMaintenanceSummary*, NodeArgs ) >
+<!ATTLIST Action rID ID #REQUIRED>
+
+<!ELEMENT AIter ((Step|HtmlStep|Action)*,DataMapping?, Summary?,NodeArgs) >
+<!ATTLIST AIter rID ID #REQUIRED iterID CDATA #REQUIRED isCountable (False|True) "False" >
+
+<!ELEMENT AName ( #PCDATA ) >
+
+<!ELEMENT TestMaintenanceSummary (ActionMaintenanceSummary*) >
+<!ATTLIST TestMaintenanceSummary ObjectsAdded CDATA #REQUIRED ObjectsUpdated CDATA #REQUIRED StepsUpdated CDATA #REQUIRED StepsComments CDATA #REQUIRED><!ELEMENT ActionMaintenanceSummary (ObjectChange* ) >
+<!ATTLIST ActionMaintenanceSummary Action CDATA #REQUIRED Objects CDATA #REQUIRED Updated CDATA #REQUIRED LinesTotal CDATA #REQUIRED Added CDATA #REQUIRED LinesUpdated CDATA #REQUIRED>
+
+<!ELEMENT ObjectChange  (Hierarchy, PropertyChangeList* ) >
+<!ATTLIST ObjectChange Operation CDATA #IMPLIED OriginalRepository CDATA #IMPLIED>
+
+<!ELEMENT PropertyChangeList (PropertyDef*) >
+
+<!ELEMENT PropertyDef (OriginalValue, NewValue) >
+<!ATTLIST PropertyDef PropName CDATA #REQUIRED OriginRegularExpression (True|False) "False" NewRegularExpression (True|False) "False" AddedProperty (True|False) "False" >
+
+<!ELEMENT OriginalValue ( #PCDATA )>
+
+<!ELEMENT NewValue ( #PCDATA )>
+
+<!ELEMENT Hierarchy  (ObjectName, Hierarchy*) >
+<!ATTLIST Hierarchy MicClass CDATA #REQUIRED>
+
+<!ELEMENT ObjectName  ( #PCDATA ) >
+
+<!ELEMENT Step (Obj,Details,Time,TimeTick* ,(Step|HtmlStep|Doc)*, DataMapping?, NodeArgs) >
+<!ATTLIST Step rID ID #REQUIRED retval CDATA #IMPLIED>
+
+<!ELEMENT HtmlStep (HTML,TimeTick*,(Step|HtmlStep|Doc)*,NodeArgs) >
+<!ATTLIST HtmlStep rID ID #REQUIRED >
+
+<!ELEMENT Obj ( #PCDATA ) >
+<!ATTLIST Obj plainTxt (False|True) "True">
+
+<!ELEMENT Details ( #PCDATA ) >
+<!ATTLIST Details plainTxt (False|True) "True">
+
+<!ELEMENT Time ( #PCDATA ) >
+
+<!ELEMENT HTML ( #PCDATA ) >
+
+<!ELEMENT Disp ( #PCDATA ) >
+
+<!ELEMENT TimeTick ( #PCDATA ) >
+
+<!ELEMENT DataMapping ( DataMappedItem* )>
+<!ELEMENT DataMappedItem EMPTY >
+<!ATTLIST DataMappedItem dsName CDATA #REQUIRED >
+<!ATTLIST DataMappedItem rowId CDATA #REQUIRED >
+
+<!ELEMENT NodeArgs (Disp,TopPane?,BtmPane?,ExtendedInfo? )>
+<!ATTLIST NodeArgs eType CDATA #REQUIRED icon CDATA #REQUIRED nRep CDATA #REQUIRED UserNote CDATA #IMPLIED filter (False|True) "True">
+<!ATTLIST NodeArgs status (Passed|Failed|Done|Warning|Information) "Done">
+<!ATTLIST NodeArgs iconSel CDATA #IMPLIED nType CDATA #IMPLIED MovieMarker CDATA "">
+<!ATTLIST NodeArgs Source CDATA #IMPLIED SourceLine CDATA #IMPLIED StepFlowItemKey CDATA #IMPLIED >
+
+<!ELEMENT TopPane (Path)>
+
+<!ELEMENT BtmPane ( (Path|WR)?,ASHilite?)>
+<!ATTLIST BtmPane vType CDATA "HTML">
+
+<!ELEMENT Path ( #PCDATA ) >
+
+<!ELEMENT ASHilite ( #PCDATA ) >
+
+<!ELEMENT WR ( #PCDATA ) >
+
+<!ELEMENT ExtendedInfo ( StepData ) >
+
+<!ATTLIST ExtendedInfo StepType CDATA #REQUIRED>
+<!ELEMENT DT (NodeArgs) >
+<!ATTLIST DT rID ID #REQUIRED>
+
+<!ELEMENT Summary (Param*)>
+<!ATTLIST Summary sTime CDATA #IMPLIED eTime CDATA #IMPLIED passed CDATA #IMPLIED failed CDATA #IMPLIED warnings CDATA #IMPLIED retval CDATA #IMPLIED stopped (False|True) "False" >
+
+<!ELEMENT Param (ParamName,ParamVal)+ >
+<!ATTLIST Param paramInOut (In|Out) "In">
+
+<!ELEMENT ParamName ( #PCDATA ) >
+
+<!ELEMENT ParamVal ( #PCDATA ) >
+
+]
+>
+<Report ver="2.0" tmZone="Hora est. Sudamérica Pacífico">
+<General productName="HP Unified Functional Testing" productVer="12.02" os="Windows 7" host="HP-PC"><DocLocation><![CDATA[C:\casos\Emision Interact_ V00\ATC_00030_Emision_Issue]]></DocLocation></General>
+<Doc rID="T1"   productName= "HP Unified Functional Testing"  >
+<DName><![CDATA[ATC_00030_Emision_Issue]]></DName>
+<Res><![CDATA[Res7]]></Res>
+<DT rID="T2">
+<NodeArgs eType="Table" icon="2" nRep="4" filter="False" >
+<Disp><![CDATA[Run-Time Data Table]]></Disp>
+<BtmPane vType="Table" >
+<Path><![CDATA[Default.xls]]></Path>
+</BtmPane>
+</NodeArgs>
+</DT>
+<DIter rID="T3" iterID="1" >
+<Action rID="T4">
+<AName><![CDATA[ATC_Genera_Carpeta_Evidencias_Issue [ATC_Genera_Carpetas_Evidencias]]]></AName>
+<Summary sTime="17/01/2017 - 18:55:38" eTime="17/01/2017 - 18:55:40" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="7" >
+<Disp><![CDATA[ATC_Genera_Carpeta_Evidencias_Issue [ATC_Genera_Carpetas_Evidencias] Summary]]></Disp>
+</NodeArgs>
+</Action>
+<Action rID="T5">
+<AName><![CDATA[ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]]]></AName>
+<Step rID="T6">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.3-CVT-05Jul16]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaWindow]]></Details>
+<Time><![CDATA[17/01/2017 - 18:55:40]]></Time>
+<TimeTick>1484690140</TimeTick>
+<Step rID="T7">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.3-CVT-05Jul16.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:55:40]]></Time>
+<TimeTick>1484690140</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="11" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="0" >
+<Disp><![CDATA[Interact-v7.3-CVT-05Jul16.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T8">
+<Obj plainTxt="False" ><![CDATA[Iniciar sesión]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaDialog]]></Details>
+<Time><![CDATA[17/01/2017 - 18:55:42]]></Time>
+<TimeTick>1484690142</TimeTick>
+<Step rID="T9">
+<Obj plainTxt="False" ><![CDATA[Iniciar sesión.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:55:42]]></Time>
+<TimeTick>1484690142</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="14" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="20" >
+<Disp><![CDATA[Iniciar sesión.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="13" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="20" >
+<Disp><![CDATA[Iniciar sesión]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T10">
+<Obj plainTxt="False" ><![CDATA[Iniciar sesión / Cerrar]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaMenu]]></Details>
+<Time><![CDATA[17/01/2017 - 18:55:42]]></Time>
+<TimeTick>1484690142</TimeTick>
+<Step rID="T11">
+<Obj plainTxt="False" ><![CDATA[Iniciar sesión]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaMenu]]></Details>
+<Time><![CDATA[17/01/2017 - 18:55:42]]></Time>
+<TimeTick>1484690142</TimeTick>
+<Step rID="T12">
+<Obj plainTxt="False" ><![CDATA[Iniciar sesión.Select]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[17/01/2017 - 18:55:42]]></Time>
+<TimeTick>1484690142</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="18" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="23" >
+<Disp><![CDATA[Iniciar sesión.Select]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="17" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="23" >
+<Disp><![CDATA[Iniciar sesión]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="16" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="23" >
+<Disp><![CDATA[Iniciar sesión / Cerrar]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T13">
+<Obj plainTxt="False" ><![CDATA[Iniciar sesión]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaDialog]]></Details>
+<Time><![CDATA[17/01/2017 - 18:55:42]]></Time>
+<TimeTick>1484690142</TimeTick>
+<Step rID="T14">
+<Obj plainTxt="False" ><![CDATA[NumeroDeAgente.SetFocus]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[17/01/2017 - 18:55:42]]></Time>
+<TimeTick>1484690142</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="21" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="24" >
+<Disp><![CDATA[NumeroDeAgente.SetFocus]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T15">
+<Obj plainTxt="False" ><![CDATA[NumeroDeAgente.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["40015"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:55:44]]></Time>
+<TimeTick>1484690144</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="23" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="26" >
+<Disp><![CDATA[NumeroDeAgente.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T16">
+<Obj plainTxt="False" ><![CDATA[Contrasena.SetFocus]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[17/01/2017 - 18:55:44]]></Time>
+<TimeTick>1484690144</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="25" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="28" >
+<Disp><![CDATA[Contrasena.SetFocus]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T17">
+<Obj plainTxt="False" ><![CDATA[Contrasena.SetSecure]]></Obj>
+<Details plainTxt="False" ><![CDATA["canales1"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:55:45]]></Time>
+<TimeTick>1484690145</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="27" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="30" >
+<Disp><![CDATA[Contrasena.SetSecure]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T18">
+<Obj plainTxt="False" ><![CDATA[CodigoDeAerolinea.SetFocus]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[17/01/2017 - 18:55:45]]></Time>
+<TimeTick>1484690145</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="29" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="32" >
+<Disp><![CDATA[CodigoDeAerolinea.SetFocus]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T19">
+<Obj plainTxt="False" ><![CDATA[CodigoDeAerolinea.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["LA"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:55:46]]></Time>
+<TimeTick>1484690146</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="31" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="34" >
+<Disp><![CDATA[CodigoDeAerolinea.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T20">
+<Obj plainTxt="False" ><![CDATA[DutyCode.SetFocus]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[17/01/2017 - 18:55:46]]></Time>
+<TimeTick>1484690146</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="33" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="36" >
+<Disp><![CDATA[DutyCode.SetFocus]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T21">
+<Obj plainTxt="False" ><![CDATA[DutyCode.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA[""]]></Details>
+<Time><![CDATA[17/01/2017 - 18:55:47]]></Time>
+<TimeTick>1484690147</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="35" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="38" >
+<Disp><![CDATA[DutyCode.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T22">
+<Obj plainTxt="False" ><![CDATA[LoginOK.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA["LEFT"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:55:48]]></Time>
+<TimeTick>1484690148</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="37" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="42" >
+<Disp><![CDATA[LoginOK.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="20" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="24" >
+<Disp><![CDATA[Iniciar sesión]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T23">
+<Obj plainTxt="False" ><![CDATA[PopupDialog]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaDialog]]></Details>
+<Time><![CDATA[17/01/2017 - 18:55:52]]></Time>
+<TimeTick>1484690152</TimeTick>
+<Step rID="T24">
+<Obj plainTxt="False" ><![CDATA[PopUp OK.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:55:52]]></Time>
+<TimeTick>1484690152</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="41" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="46" >
+<Disp><![CDATA[PopUp OK.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="40" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="46" >
+<Disp><![CDATA[PopupDialog]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="10" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="0" >
+<Disp><![CDATA[Interact-v7.3-CVT-05Jul16]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T25">
+<Obj ><![CDATA[Login Ok]]></Obj>
+<Details ><![CDATA[Usuario ingresado: 40015]]></Details>
+<Time><![CDATA[17/01/2017 - 18:55:52]]></Time>
+<TimeTick>1484690152</TimeTick>
+<NodeArgs eType="User" icon="10" nRep="42" status="Passed" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[Login Ok]]></Disp>
+<BtmPane vType="ViewerGen.SSViewerGen" >
+<Path><![CDATA[ZIP::Act2\Row0\ssf1.xml]]></Path>
+</BtmPane>
+</NodeArgs>
+</Step>
+<Step rID="T26">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.10-CVT-08Nov16]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaWindow]]></Details>
+<Time><![CDATA[17/01/2017 - 18:55:52]]></Time>
+<TimeTick>1484690152</TimeTick>
+<Step rID="T27">
+<Obj plainTxt="False" ><![CDATA[PopupDialog]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaDialog]]></Details>
+<Time><![CDATA[17/01/2017 - 18:55:52]]></Time>
+<TimeTick>1484690152</TimeTick>
+<Step rID="T28">
+<Obj plainTxt="False" ><![CDATA[Version Control(st).Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:55:52]]></Time>
+<TimeTick>1484690152</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="47" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="66" >
+<Disp><![CDATA[Version Control(st).Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="46" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="66" >
+<Disp><![CDATA[PopupDialog]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="45" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="66" >
+<Disp><![CDATA[Interact-v7.10-CVT-08Nov16]]></Disp>
+</NodeArgs>
+</Step>
+<Action rID="T29">
+<AName><![CDATA[ATC_OAC_AAA_Sabre_Interact [ATC_Login_Interact]]]></AName>
+<Step rID="T30">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.3-CVT-05Jul16]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:11]]></Time>
+<TimeTick>1484690171</TimeTick>
+<Step rID="T31">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.3-CVT-05Jul16.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["&lt__MicAltDwn&gt&lt__MicF3&gt&lt__MicAltUp&gt"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:11]]></Time>
+<TimeTick>1484690171</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="677" Source="ATC_OAC_AAA_Sabre_Interact [ATC_Login_Interact]" SourceLine="1" >
+<Disp><![CDATA[Interact-v7.3-CVT-05Jul16.Type]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="12" nRep="676" Source="ATC_OAC_AAA_Sabre_Interact [ATC_Login_Interact]" SourceLine="1" >
+<Disp><![CDATA[Interact-v7.3-CVT-05Jul16]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T32">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.3-07Aug16]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaWindow]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:12]]></Time>
+<TimeTick>1484690172</TimeTick>
+<Step rID="T33">
+<Obj plainTxt="False" ><![CDATA[Configuración de la aplicación]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaDialog]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:12]]></Time>
+<TimeTick>1484690172</TimeTick>
+<Step rID="T34">
+<Obj plainTxt="False" ><![CDATA[Cambiar Ciudad.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["ON"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:12]]></Time>
+<TimeTick>1484690172</TimeTick>
+<NodeArgs eType="Replay" icon="13" nRep="681" Source="ATC_OAC_AAA_Sabre_Interact [ATC_Login_Interact]" SourceLine="3" >
+<Disp><![CDATA[Cambiar Ciudad.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T35">
+<Obj plainTxt="False" ><![CDATA[Detalle OAC:.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:13]]></Time>
+<TimeTick>1484690173</TimeTick>
+<NodeArgs eType="Replay" icon="13" nRep="682" Source="ATC_OAC_AAA_Sabre_Interact [ATC_Login_Interact]" SourceLine="5" >
+<Disp><![CDATA[Detalle OAC:.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T36">
+<Obj plainTxt="False" ><![CDATA[Detalle OAC:.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["ON"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:13]]></Time>
+<TimeTick>1484690173</TimeTick>
+<NodeArgs eType="Replay" icon="13" nRep="684" Source="ATC_OAC_AAA_Sabre_Interact [ATC_Login_Interact]" SourceLine="7" >
+<Disp><![CDATA[Detalle OAC:.Set]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="680" Source="ATC_OAC_AAA_Sabre_Interact [ATC_Login_Interact]" SourceLine="3" >
+<Disp><![CDATA[Configuración de la aplicación]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="679" Source="ATC_OAC_AAA_Sabre_Interact [ATC_Login_Interact]" SourceLine="3" >
+<Disp><![CDATA[Interact-v7.3-07Aug16]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T37">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.3-CVT-05Jul16]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaWindow]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:13]]></Time>
+<TimeTick>1484690173</TimeTick>
+<Step rID="T38">
+<Obj plainTxt="False" ><![CDATA[OAC Ciudad AAA]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaDialog]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:13]]></Time>
+<TimeTick>1484690173</TimeTick>
+<Step rID="T39">
+<Obj plainTxt="False" ><![CDATA[CiudadDeseada.SetFocus]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:13]]></Time>
+<TimeTick>1484690173</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="688" Source="ATC_OAC_AAA_Sabre_Interact [ATC_Login_Interact]" SourceLine="11" >
+<Disp><![CDATA[CiudadDeseada.SetFocus]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T40">
+<Obj plainTxt="False" ><![CDATA[CiudadDeseada.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["TCQ"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:13]]></Time>
+<TimeTick>1484690173</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="690" Source="ATC_OAC_AAA_Sabre_Interact [ATC_Login_Interact]" SourceLine="12" >
+<Disp><![CDATA[CiudadDeseada.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T41">
+<Obj plainTxt="False" ><![CDATA[CodigoOficina.SetFocus]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:14]]></Time>
+<TimeTick>1484690174</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="692" Source="ATC_OAC_AAA_Sabre_Interact [ATC_Login_Interact]" SourceLine="18" >
+<Disp><![CDATA[CodigoOficina.SetFocus]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T42">
+<Obj plainTxt="False" ><![CDATA[CodigoOficina.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["TCQ"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:14]]></Time>
+<TimeTick>1484690174</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="694" Source="ATC_OAC_AAA_Sabre_Interact [ATC_Login_Interact]" SourceLine="19" >
+<Disp><![CDATA[CodigoOficina.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T43">
+<Obj plainTxt="False" ><![CDATA[CodigoDeCuenta.SetFocus]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:15]]></Time>
+<TimeTick>1484690175</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="696" Source="ATC_OAC_AAA_Sabre_Interact [ATC_Login_Interact]" SourceLine="26" >
+<Disp><![CDATA[CodigoDeCuenta.SetFocus]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T44">
+<Obj plainTxt="False" ><![CDATA[CodigoDeCuenta.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["P1"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:15]]></Time>
+<TimeTick>1484690175</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="698" Source="ATC_OAC_AAA_Sabre_Interact [ATC_Login_Interact]" SourceLine="27" >
+<Disp><![CDATA[CodigoDeCuenta.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T45">
+<Obj plainTxt="False" ><![CDATA[CodigoOficina2.SetFocus]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:16]]></Time>
+<TimeTick>1484690176</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="700" Source="ATC_OAC_AAA_Sabre_Interact [ATC_Login_Interact]" SourceLine="37" >
+<Disp><![CDATA[CodigoOficina2.SetFocus]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T46">
+<Obj plainTxt="False" ><![CDATA[CodigoOficina2.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["91991185"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:16]]></Time>
+<TimeTick>1484690176</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="702" Source="ATC_OAC_AAA_Sabre_Interact [ATC_Login_Interact]" SourceLine="38" >
+<Disp><![CDATA[CodigoOficina2.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T47">
+<Obj plainTxt="False" ><![CDATA[OK.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA["LEFT"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:18]]></Time>
+<TimeTick>1484690178</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="704" Source="ATC_OAC_AAA_Sabre_Interact [ATC_Login_Interact]" SourceLine="52" >
+<Disp><![CDATA[OK.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="687" Source="ATC_OAC_AAA_Sabre_Interact [ATC_Login_Interact]" SourceLine="11" >
+<Disp><![CDATA[OAC Ciudad AAA]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T48">
+<Obj plainTxt="False" ><![CDATA[Configuración de la aplicación]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaDialog]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:19]]></Time>
+<TimeTick>1484690179</TimeTick>
+<Step rID="T49">
+<Obj plainTxt="False" ><![CDATA[Boton OK.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA["LEFT"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:19]]></Time>
+<TimeTick>1484690179</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="707" Source="ATC_OAC_AAA_Sabre_Interact [ATC_Login_Interact]" SourceLine="56" >
+<Disp><![CDATA[Boton OK.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="706" Source="ATC_OAC_AAA_Sabre_Interact [ATC_Login_Interact]" SourceLine="56" >
+<Disp><![CDATA[Configuración de la aplicación]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="686" Source="ATC_OAC_AAA_Sabre_Interact [ATC_Login_Interact]" SourceLine="11" >
+<Disp><![CDATA[Interact-v7.3-CVT-05Jul16]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="17/01/2017 - 18:56:11" eTime="17/01/2017 - 18:56:21" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="674" >
+<Disp><![CDATA[ATC_OAC_AAA_Sabre_Interact [ATC_Login_Interact] Summary]]></Disp>
+</NodeArgs>
+</Action>
+<Action rID="T50">
+<AName><![CDATA[ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]]]></AName>
+<Step rID="T51">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.8-CVT-04Oct16]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaWindow]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:42]]></Time>
+<TimeTick>1484690202</TimeTick>
+<Step rID="T52">
+<Obj plainTxt="False" ><![CDATA[NonModalPopupPresImpl$NonModal]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaInternalFrame]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:42]]></Time>
+<TimeTick>1484690202</TimeTick>
+<Step rID="T53">
+<Obj plainTxt="False" ><![CDATA[PrinterIcon.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:42]]></Time>
+<TimeTick>1484690202</TimeTick>
+<NodeArgs eType="Replay" icon="15" nRep="713" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="4" >
+<Disp><![CDATA[PrinterIcon.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="14" nRep="712" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="4" >
+<Disp><![CDATA[NonModalPopupPresImpl$NonModal]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="711" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="4" >
+<Disp><![CDATA[Interact-v7.8-CVT-04Oct16]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T54">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.3-CVT-05Jul16]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:42]]></Time>
+<TimeTick>1484690202</TimeTick>
+<Step rID="T55">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.3-CVT-05Jul16.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["&lt__MicCtrlDwn&gtp&lt__MicCtrlUp&gt"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:42]]></Time>
+<TimeTick>1484690202</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="716" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="12" >
+<Disp><![CDATA[Interact-v7.3-CVT-05Jul16.Type]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="12" nRep="715" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="12" >
+<Disp><![CDATA[Interact-v7.3-CVT-05Jul16]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T56">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.3-07Aug16]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaWindow]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:42]]></Time>
+<TimeTick>1484690202</TimeTick>
+<Step rID="T57">
+<Obj plainTxt="False" ><![CDATA[Funciones de la impresora]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaDialog]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:42]]></Time>
+<TimeTick>1484690202</TimeTick>
+<Step rID="T58">
+<Obj plainTxt="False" ><![CDATA[Seleccionar :.Select]]></Obj>
+<Details plainTxt="False" ><![CDATA["Asignar las impresoras"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:42]]></Time>
+<TimeTick>1484690202</TimeTick>
+<NodeArgs eType="Replay" icon="16" nRep="720" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="14" >
+<Disp><![CDATA[Seleccionar :.Select]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T59">
+<Obj plainTxt="False" ><![CDATA[Impresora de Boletos.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["OFF"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:44]]></Time>
+<TimeTick>1484690204</TimeTick>
+<NodeArgs eType="Replay" icon="13" nRep="722" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="17" >
+<Disp><![CDATA[Impresora de Boletos.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T60">
+<Obj plainTxt="False" ><![CDATA[Impresora de Boletos.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["ON"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:45]]></Time>
+<TimeTick>1484690205</TimeTick>
+<NodeArgs eType="Replay" icon="13" nRep="724" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="19" >
+<Disp><![CDATA[Impresora de Boletos.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T61">
+<Obj plainTxt="False" ><![CDATA[TipoDeRutina.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:45]]></Time>
+<TimeTick>1484690205</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="726" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="20" >
+<Disp><![CDATA[TipoDeRutina.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T62">
+<Obj plainTxt="False" ><![CDATA[Impresora de Boletos.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["OFF"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:45]]></Time>
+<TimeTick>1484690205</TimeTick>
+<NodeArgs eType="Replay" icon="13" nRep="728" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="17" >
+<Disp><![CDATA[Impresora de Boletos.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T63">
+<Obj plainTxt="False" ><![CDATA[Impresora de Boletos.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["ON"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:46]]></Time>
+<TimeTick>1484690206</TimeTick>
+<NodeArgs eType="Replay" icon="13" nRep="730" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="19" >
+<Disp><![CDATA[Impresora de Boletos.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T64">
+<Obj plainTxt="False" ><![CDATA[TipoDeRutina.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:46]]></Time>
+<TimeTick>1484690206</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="731" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="20" >
+<Disp><![CDATA[TipoDeRutina.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T65">
+<Obj plainTxt="False" ><![CDATA[ImpresoraDeBoletos.SetFocus]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:47]]></Time>
+<TimeTick>1484690207</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="733" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="25" >
+<Disp><![CDATA[ImpresoraDeBoletos.SetFocus]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T66">
+<Obj plainTxt="False" ><![CDATA[ImpresoraDeBoletos.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["DC8E0C"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:47]]></Time>
+<TimeTick>1484690207</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="735" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="26" >
+<Disp><![CDATA[ImpresoraDeBoletos.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T67">
+<Obj plainTxt="False" ><![CDATA[TipoDeRutina.SetFocus]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:48]]></Time>
+<TimeTick>1484690208</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="737" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="34" >
+<Disp><![CDATA[TipoDeRutina.SetFocus]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T68">
+<Obj plainTxt="False" ><![CDATA[TipoDeRutina.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["2A"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:48]]></Time>
+<TimeTick>1484690208</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="739" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="35" >
+<Disp><![CDATA[TipoDeRutina.Set]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="719" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="14" >
+<Disp><![CDATA[Funciones de la impresora]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="718" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="14" >
+<Disp><![CDATA[Interact-v7.3-07Aug16]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T69">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.10-CVT-16Nov16]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaWindow]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:49]]></Time>
+<TimeTick>1484690209</TimeTick>
+<Step rID="T70">
+<Obj plainTxt="False" ><![CDATA[Funciones de la impresora]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaDialog]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:49]]></Time>
+<TimeTick>1484690209</TimeTick>
+<Step rID="T71">
+<Obj plainTxt="False" ><![CDATA[Impresora_Station.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:49]]></Time>
+<TimeTick>1484690209</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="743" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="40" >
+<Disp><![CDATA[Impresora_Station.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="742" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="40" >
+<Disp><![CDATA[Funciones de la impresora]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="741" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="40" >
+<Disp><![CDATA[Interact-v7.10-CVT-16Nov16]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T72">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.3-07Aug16]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaWindow]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:51]]></Time>
+<TimeTick>1484690211</TimeTick>
+<Step rID="T73">
+<Obj plainTxt="False" ><![CDATA[Funciones de la impresora]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaDialog]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:51]]></Time>
+<TimeTick>1484690211</TimeTick>
+<Step rID="T74">
+<Obj plainTxt="False" ><![CDATA[OK.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA["LEFT"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:51]]></Time>
+<TimeTick>1484690211</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="747" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="53" >
+<Disp><![CDATA[OK.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="746" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="53" >
+<Disp><![CDATA[Funciones de la impresora]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="745" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="53" >
+<Disp><![CDATA[Interact-v7.3-07Aug16]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T75">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.3-CVT-05Jul16]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaWindow]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:51]]></Time>
+<TimeTick>1484690211</TimeTick>
+<Step rID="T76">
+<Obj plainTxt="False" ><![CDATA[PopupDialog]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaDialog]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:51]]></Time>
+<TimeTick>1484690211</TimeTick>
+<Step rID="T77">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:51]]></Time>
+<TimeTick>1484690211</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="752" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T78">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:51]]></Time>
+<TimeTick>1484690211</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="755" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T79">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:51]]></Time>
+<TimeTick>1484690211</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="758" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T80">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:51]]></Time>
+<TimeTick>1484690211</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="761" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T81">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:51]]></Time>
+<TimeTick>1484690211</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="764" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T82">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:51]]></Time>
+<TimeTick>1484690211</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="767" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T83">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:51]]></Time>
+<TimeTick>1484690211</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="770" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T84">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:51]]></Time>
+<TimeTick>1484690211</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="773" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T85">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:51]]></Time>
+<TimeTick>1484690211</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="776" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T86">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:51]]></Time>
+<TimeTick>1484690211</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="779" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T87">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:51]]></Time>
+<TimeTick>1484690211</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="782" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T88">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:51]]></Time>
+<TimeTick>1484690211</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="785" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T89">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:51]]></Time>
+<TimeTick>1484690211</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="788" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T90">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:51]]></Time>
+<TimeTick>1484690211</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="791" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T91">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:51]]></Time>
+<TimeTick>1484690211</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="794" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T92">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:51]]></Time>
+<TimeTick>1484690211</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="797" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T93">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:51]]></Time>
+<TimeTick>1484690211</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="800" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T94">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:51]]></Time>
+<TimeTick>1484690211</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="803" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T95">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:51]]></Time>
+<TimeTick>1484690211</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="806" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T96">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:51]]></Time>
+<TimeTick>1484690211</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="809" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T97">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:51]]></Time>
+<TimeTick>1484690211</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="812" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T98">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:51]]></Time>
+<TimeTick>1484690211</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="815" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T99">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:51]]></Time>
+<TimeTick>1484690211</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="818" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T100">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:51]]></Time>
+<TimeTick>1484690211</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="821" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T101">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:51]]></Time>
+<TimeTick>1484690211</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="824" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T102">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:51]]></Time>
+<TimeTick>1484690211</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="827" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T103">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:52]]></Time>
+<TimeTick>1484690212</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="830" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T104">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:52]]></Time>
+<TimeTick>1484690212</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="833" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T105">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:52]]></Time>
+<TimeTick>1484690212</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="836" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T106">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:52]]></Time>
+<TimeTick>1484690212</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="839" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T107">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:52]]></Time>
+<TimeTick>1484690212</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="842" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T108">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:52]]></Time>
+<TimeTick>1484690212</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="845" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T109">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:52]]></Time>
+<TimeTick>1484690212</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="848" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T110">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:52]]></Time>
+<TimeTick>1484690212</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="851" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T111">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:52]]></Time>
+<TimeTick>1484690212</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="854" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T112">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:52]]></Time>
+<TimeTick>1484690212</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="857" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T113">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:52]]></Time>
+<TimeTick>1484690212</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="860" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T114">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:52]]></Time>
+<TimeTick>1484690212</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="863" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T115">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:52]]></Time>
+<TimeTick>1484690212</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="866" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T116">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:52]]></Time>
+<TimeTick>1484690212</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="869" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T117">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:52]]></Time>
+<TimeTick>1484690212</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="872" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T118">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:52]]></Time>
+<TimeTick>1484690212</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="875" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T119">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:52]]></Time>
+<TimeTick>1484690212</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="878" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T120">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:52]]></Time>
+<TimeTick>1484690212</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="881" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T121">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:52]]></Time>
+<TimeTick>1484690212</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="884" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T122">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:52]]></Time>
+<TimeTick>1484690212</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="887" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T123">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:52]]></Time>
+<TimeTick>1484690212</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="890" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T124">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:52]]></Time>
+<TimeTick>1484690212</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="893" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T125">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:52]]></Time>
+<TimeTick>1484690212</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="896" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T126">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:52]]></Time>
+<TimeTick>1484690212</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="899" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T127">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:52]]></Time>
+<TimeTick>1484690212</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="902" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T128">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:52]]></Time>
+<TimeTick>1484690212</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="905" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T129">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:52]]></Time>
+<TimeTick>1484690212</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="908" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T130">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:52]]></Time>
+<TimeTick>1484690212</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="911" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T131">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:52]]></Time>
+<TimeTick>1484690212</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="914" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T132">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:52]]></Time>
+<TimeTick>1484690212</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="917" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T133">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:52]]></Time>
+<TimeTick>1484690212</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="920" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T134">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:52]]></Time>
+<TimeTick>1484690212</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="923" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T135">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:52]]></Time>
+<TimeTick>1484690212</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="926" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T136">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:53]]></Time>
+<TimeTick>1484690213</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="929" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T137">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:53]]></Time>
+<TimeTick>1484690213</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="932" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T138">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:53]]></Time>
+<TimeTick>1484690213</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="935" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T139">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:53]]></Time>
+<TimeTick>1484690213</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="938" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T140">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:53]]></Time>
+<TimeTick>1484690213</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="941" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T141">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:53]]></Time>
+<TimeTick>1484690213</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="944" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T142">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:53]]></Time>
+<TimeTick>1484690213</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="947" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T143">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:53]]></Time>
+<TimeTick>1484690213</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="950" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T144">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:53]]></Time>
+<TimeTick>1484690213</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="953" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T145">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:53]]></Time>
+<TimeTick>1484690213</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="956" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T146">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:53]]></Time>
+<TimeTick>1484690213</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="959" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T147">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:53]]></Time>
+<TimeTick>1484690213</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="962" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T148">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:53]]></Time>
+<TimeTick>1484690213</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="965" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T149">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:53]]></Time>
+<TimeTick>1484690213</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="968" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T150">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:53]]></Time>
+<TimeTick>1484690213</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="971" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T151">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:53]]></Time>
+<TimeTick>1484690213</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="974" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T152">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:53]]></Time>
+<TimeTick>1484690213</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="977" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T153">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:53]]></Time>
+<TimeTick>1484690213</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="980" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T154">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:53]]></Time>
+<TimeTick>1484690213</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="983" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T155">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:53]]></Time>
+<TimeTick>1484690213</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="986" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T156">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:53]]></Time>
+<TimeTick>1484690213</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="989" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T157">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:53]]></Time>
+<TimeTick>1484690213</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="992" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T158">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:53]]></Time>
+<TimeTick>1484690213</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="995" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T159">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:53]]></Time>
+<TimeTick>1484690213</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="998" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T160">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:53]]></Time>
+<TimeTick>1484690213</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1001" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T161">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:53]]></Time>
+<TimeTick>1484690213</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1004" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T162">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:53]]></Time>
+<TimeTick>1484690213</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1007" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T163">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:53]]></Time>
+<TimeTick>1484690213</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1010" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T164">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:53]]></Time>
+<TimeTick>1484690213</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1013" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T165">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:53]]></Time>
+<TimeTick>1484690213</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1016" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T166">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:54]]></Time>
+<TimeTick>1484690214</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1019" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T167">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:54]]></Time>
+<TimeTick>1484690214</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1022" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T168">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:54]]></Time>
+<TimeTick>1484690214</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1025" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T169">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:54]]></Time>
+<TimeTick>1484690214</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1028" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T170">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:54]]></Time>
+<TimeTick>1484690214</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1031" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T171">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:54]]></Time>
+<TimeTick>1484690214</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1034" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T172">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:54]]></Time>
+<TimeTick>1484690214</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1037" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T173">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:54]]></Time>
+<TimeTick>1484690214</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1040" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T174">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:54]]></Time>
+<TimeTick>1484690214</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1043" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T175">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:54]]></Time>
+<TimeTick>1484690214</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1046" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T176">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:54]]></Time>
+<TimeTick>1484690214</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1049" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T177">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:54]]></Time>
+<TimeTick>1484690214</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1052" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T178">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:54]]></Time>
+<TimeTick>1484690214</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1055" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T179">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:54]]></Time>
+<TimeTick>1484690214</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1058" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T180">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:54]]></Time>
+<TimeTick>1484690214</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1061" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T181">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:54]]></Time>
+<TimeTick>1484690214</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1064" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T182">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:54]]></Time>
+<TimeTick>1484690214</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1067" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T183">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:54]]></Time>
+<TimeTick>1484690214</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1070" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T184">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:54]]></Time>
+<TimeTick>1484690214</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1073" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T185">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:54]]></Time>
+<TimeTick>1484690214</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1076" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T186">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:54]]></Time>
+<TimeTick>1484690214</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1079" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T187">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:54]]></Time>
+<TimeTick>1484690214</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1082" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T188">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:54]]></Time>
+<TimeTick>1484690214</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1085" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T189">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:54]]></Time>
+<TimeTick>1484690214</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1088" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T190">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:54]]></Time>
+<TimeTick>1484690214</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1091" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T191">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:54]]></Time>
+<TimeTick>1484690214</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1094" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T192">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:54]]></Time>
+<TimeTick>1484690214</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1097" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T193">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:54]]></Time>
+<TimeTick>1484690214</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1100" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T194">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:54]]></Time>
+<TimeTick>1484690214</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1103" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T195">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:54]]></Time>
+<TimeTick>1484690214</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1106" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T196">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:54]]></Time>
+<TimeTick>1484690214</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1109" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T197">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:54]]></Time>
+<TimeTick>1484690214</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1112" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T198">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:55]]></Time>
+<TimeTick>1484690215</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1115" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T199">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:55]]></Time>
+<TimeTick>1484690215</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1118" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T200">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:55]]></Time>
+<TimeTick>1484690215</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1121" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T201">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:55]]></Time>
+<TimeTick>1484690215</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1124" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T202">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:55]]></Time>
+<TimeTick>1484690215</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1127" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T203">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:55]]></Time>
+<TimeTick>1484690215</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1130" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T204">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:55]]></Time>
+<TimeTick>1484690215</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1133" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T205">
+<Obj plainTxt="False" ><![CDATA[MensajePopUp.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:55]]></Time>
+<TimeTick>1484690215</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1136" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[MensajePopUp.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T206">
+<Obj plainTxt="False" ><![CDATA[ConfirmacionImpresoras.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:55]]></Time>
+<TimeTick>1484690215</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1137" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="61" >
+<Disp><![CDATA[ConfirmacionImpresoras.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T207">
+<Obj plainTxt="False" ><![CDATA[PopUp OK.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:55]]></Time>
+<TimeTick>1484690215</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="1138" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="63" >
+<Disp><![CDATA[PopUp OK.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T208">
+<Obj plainTxt="False" ><![CDATA[PopUp OK.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA["LEFT"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:55]]></Time>
+<TimeTick>1484690215</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="1140" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="70" >
+<Disp><![CDATA[PopUp OK.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="751" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[PopupDialog]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="750" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="58" >
+<Disp><![CDATA[Interact-v7.3-CVT-05Jul16]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T209">
+<Obj ><![CDATA[Printer Ok]]></Obj>
+<Details ><![CDATA[Respuesta Impresoras OK]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:55]]></Time>
+<TimeTick>1484690215</TimeTick>
+<NodeArgs eType="User" icon="10" nRep="1141" status="Passed" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="71" >
+<Disp><![CDATA[Printer Ok]]></Disp>
+<BtmPane vType="ViewerGen.SSViewerGen" >
+<Path><![CDATA[ZIP::Act4\Row0\ssf2.xml]]></Path>
+</BtmPane>
+</NodeArgs>
+</Step>
+<Summary sTime="17/01/2017 - 18:56:21" eTime="17/01/2017 - 18:56:55" passed="1" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="709" status="Passed" >
+<Disp><![CDATA[ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact] Summary]]></Disp>
+</NodeArgs>
+</Action>
+<Step rID="T210">
+<Obj plainTxt="False" ><![CDATA[Stop action replay]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run stopped by user.]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:55]]></Time>
+<TimeTick>1484690215</TimeTick>
+<NodeArgs eType="General" icon="17" nRep="1143" >
+<Disp><![CDATA[Stop action replay]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="17/01/2017 - 18:55:40" eTime="17/01/2017 - 18:56:55" passed="1" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="9" status="Passed" >
+<Disp><![CDATA[ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact] Summary]]></Disp>
+</NodeArgs>
+</Action>
+<Action rID="T211">
+<AName><![CDATA[ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]]]></AName>
+<Step rID="T212">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.8-CVT-04Oct16]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:56]]></Time>
+<TimeTick>1484690216</TimeTick>
+<Step rID="T213">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.8-CVT-04Oct16.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["&lt__MicF1&gt"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:56]]></Time>
+<TimeTick>1484690216</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="1148" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="15" >
+<Disp><![CDATA[Interact-v7.8-CVT-04Oct16.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T214">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.8-CVT-04Oct16.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["&lt__MicShiftDwn&gt&lt__MicF2&gt&lt__MicShiftUp&gt"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:56]]></Time>
+<TimeTick>1484690216</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="1150" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="18" >
+<Disp><![CDATA[Interact-v7.8-CVT-04Oct16.Type]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="12" nRep="1147" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="15" >
+<Disp><![CDATA[Interact-v7.8-CVT-04Oct16]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T215">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.3-CVT-05Jul16]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaWindow]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:56]]></Time>
+<TimeTick>1484690216</TimeTick>
+<Step rID="T216">
+<Obj plainTxt="False" ><![CDATA[Recuperar reserva existente]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaDialog]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:56]]></Time>
+<TimeTick>1484690216</TimeTick>
+<Step rID="T217">
+<Obj plainTxt="False" ><![CDATA[CodigoDeReserva.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:56]]></Time>
+<TimeTick>1484690216</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="1153" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="20" >
+<Disp><![CDATA[CodigoDeReserva.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T218">
+<Obj plainTxt="False" ><![CDATA[CodigoDeReserva.SetFocus]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:56]]></Time>
+<TimeTick>1484690216</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="1155" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="25" >
+<Disp><![CDATA[CodigoDeReserva.SetFocus]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T219">
+<Obj plainTxt="False" ><![CDATA[CodigoDeReserva.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["TLRNOO"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:56]]></Time>
+<TimeTick>1484690216</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="1157" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="26" >
+<Disp><![CDATA[CodigoDeReserva.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T220">
+<Obj plainTxt="False" ><![CDATA[OK.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA["LEFT"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:56:57]]></Time>
+<TimeTick>1484690217</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="1159" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="32" >
+<Disp><![CDATA[OK.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="1152" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="20" >
+<Disp><![CDATA[Recuperar reserva existente]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T221">
+<Obj plainTxt="False" ><![CDATA[PopupDialog]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaDialog]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:01]]></Time>
+<TimeTick>1484690221</TimeTick>
+<Step rID="T222">
+<Obj plainTxt="False" ><![CDATA[DetalleAdvertencia.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:01]]></Time>
+<TimeTick>1484690221</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1163" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="37" >
+<Disp><![CDATA[DetalleAdvertencia.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="1162" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="37" >
+<Disp><![CDATA[PopupDialog]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="1151" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="20" >
+<Disp><![CDATA[Interact-v7.3-CVT-05Jul16]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T223">
+<Obj ><![CDATA[PNR FoundTLRNOO]]></Obj>
+<Details ><![CDATA[PNR TLRNOO found]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:05]]></Time>
+<TimeTick>1484690225</TimeTick>
+<NodeArgs eType="User" icon="10" nRep="1164" status="Passed" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="56" >
+<Disp><![CDATA[PNR FoundTLRNOO]]></Disp>
+<BtmPane vType="ViewerGen.SSViewerGen" >
+<Path><![CDATA[ZIP::Act5\Row0\ssf3.xml]]></Path>
+</BtmPane>
+</NodeArgs>
+</Step>
+<Step rID="T224">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.3-CVT-05Jul16]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaWindow]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:05]]></Time>
+<TimeTick>1484690225</TimeTick>
+<Step rID="T225">
+<Obj plainTxt="False" ><![CDATA[Reserva (T)]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaInternalFrame]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:05]]></Time>
+<TimeTick>1484690225</TimeTick>
+<Step rID="T226">
+<Obj plainTxt="False" ><![CDATA[EmisionTickets - Precios.GetCellData]]></Obj>
+<Details plainTxt="False" ><![CDATA[0, 0]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:05]]></Time>
+<TimeTick>1484690225</TimeTick>
+<NodeArgs eType="Replay" icon="18" nRep="1168" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="62" >
+<Disp><![CDATA[EmisionTickets - Precios.GetCellData]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T227">
+<Obj plainTxt="False" ><![CDATA[EmisionTickets - Precios.GetCellData]]></Obj>
+<Details plainTxt="False" ><![CDATA[1, 0]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:05]]></Time>
+<TimeTick>1484690225</TimeTick>
+<NodeArgs eType="Replay" icon="18" nRep="1170" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="62" >
+<Disp><![CDATA[EmisionTickets - Precios.GetCellData]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T228">
+<Obj plainTxt="False" ><![CDATA[EmisionTickets - Precios.GetCellData]]></Obj>
+<Details plainTxt="False" ><![CDATA[2, 0]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:05]]></Time>
+<TimeTick>1484690225</TimeTick>
+<NodeArgs eType="Replay" icon="18" nRep="1172" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="62" >
+<Disp><![CDATA[EmisionTickets - Precios.GetCellData]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T229">
+<Obj plainTxt="False" ><![CDATA[EmisionTickets - Precios.GetCellData]]></Obj>
+<Details plainTxt="False" ><![CDATA[3, 0]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:05]]></Time>
+<TimeTick>1484690225</TimeTick>
+<NodeArgs eType="Replay" icon="18" nRep="1174" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="62" >
+<Disp><![CDATA[EmisionTickets - Precios.GetCellData]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T230">
+<Obj plainTxt="False" ><![CDATA[EmisionTickets - Precios.GetCellData]]></Obj>
+<Details plainTxt="False" ><![CDATA[4, 0]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:05]]></Time>
+<TimeTick>1484690225</TimeTick>
+<NodeArgs eType="Replay" icon="18" nRep="1176" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="62" >
+<Disp><![CDATA[EmisionTickets - Precios.GetCellData]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T231">
+<Obj plainTxt="False" ><![CDATA[EmisionTickets - Precios.GetCellData]]></Obj>
+<Details plainTxt="False" ><![CDATA[5, 0]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:06]]></Time>
+<TimeTick>1484690226</TimeTick>
+<NodeArgs eType="Replay" icon="18" nRep="1178" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="62" >
+<Disp><![CDATA[EmisionTickets - Precios.GetCellData]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T232">
+<Obj plainTxt="False" ><![CDATA[EmisionTickets - Precios.GetCellData]]></Obj>
+<Details plainTxt="False" ><![CDATA[6, 0]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:06]]></Time>
+<TimeTick>1484690226</TimeTick>
+<NodeArgs eType="Replay" icon="18" nRep="1180" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="62" >
+<Disp><![CDATA[EmisionTickets - Precios.GetCellData]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T233">
+<Obj plainTxt="False" ><![CDATA[EmisionTickets - Precios.GetCellData]]></Obj>
+<Details plainTxt="False" ><![CDATA[7, 0]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:06]]></Time>
+<TimeTick>1484690226</TimeTick>
+<NodeArgs eType="Replay" icon="18" nRep="1182" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="62" >
+<Disp><![CDATA[EmisionTickets - Precios.GetCellData]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T234">
+<Obj plainTxt="False" ><![CDATA[EmisionTickets - Precios.GetCellData]]></Obj>
+<Details plainTxt="False" ><![CDATA[8, 0]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:06]]></Time>
+<TimeTick>1484690226</TimeTick>
+<NodeArgs eType="Replay" icon="18" nRep="1184" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="62" >
+<Disp><![CDATA[EmisionTickets - Precios.GetCellData]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T235">
+<Obj plainTxt="False" ><![CDATA[EmisionTickets - Precios.GetCellData]]></Obj>
+<Details plainTxt="False" ><![CDATA[9, 0]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:06]]></Time>
+<TimeTick>1484690226</TimeTick>
+<NodeArgs eType="Replay" icon="18" nRep="1186" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="62" >
+<Disp><![CDATA[EmisionTickets - Precios.GetCellData]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T236">
+<Obj plainTxt="False" ><![CDATA[EmisionTickets - Precios.GetCellData]]></Obj>
+<Details plainTxt="False" ><![CDATA[10, 0]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:06]]></Time>
+<TimeTick>1484690226</TimeTick>
+<NodeArgs eType="Replay" icon="18" nRep="1188" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="62" >
+<Disp><![CDATA[EmisionTickets - Precios.GetCellData]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T237">
+<Obj plainTxt="False" ><![CDATA[EmisionTickets - Precios.GetCellData]]></Obj>
+<Details plainTxt="False" ><![CDATA[11, 0]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:06]]></Time>
+<TimeTick>1484690226</TimeTick>
+<NodeArgs eType="Replay" icon="18" nRep="1190" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="62" >
+<Disp><![CDATA[EmisionTickets - Precios.GetCellData]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T238">
+<Obj plainTxt="False" ><![CDATA[EmisionTickets - Precios.GetCellData]]></Obj>
+<Details plainTxt="False" ><![CDATA[12, 0]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:06]]></Time>
+<TimeTick>1484690226</TimeTick>
+<NodeArgs eType="Replay" icon="18" nRep="1192" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="62" >
+<Disp><![CDATA[EmisionTickets - Precios.GetCellData]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T239">
+<Obj plainTxt="False" ><![CDATA[Reserva - Pasajeros.GetCellData]]></Obj>
+<Details plainTxt="False" ><![CDATA[0, 0]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:07]]></Time>
+<TimeTick>1484690227</TimeTick>
+<NodeArgs eType="Replay" icon="18" nRep="1194" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="78" >
+<Disp><![CDATA[Reserva - Pasajeros.GetCellData]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T240">
+<Obj plainTxt="False" ><![CDATA[Reserva - Pasajeros.GetCellData]]></Obj>
+<Details plainTxt="False" ><![CDATA[1, 0]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:07]]></Time>
+<TimeTick>1484690227</TimeTick>
+<NodeArgs eType="Replay" icon="18" nRep="1196" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="78" >
+<Disp><![CDATA[Reserva - Pasajeros.GetCellData]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T241">
+<Obj plainTxt="False" ><![CDATA[Reserva - Pasajeros.GetCellData]]></Obj>
+<Details plainTxt="False" ><![CDATA[2, 0]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:07]]></Time>
+<TimeTick>1484690227</TimeTick>
+<NodeArgs eType="Replay" icon="18" nRep="1198" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="78" >
+<Disp><![CDATA[Reserva - Pasajeros.GetCellData]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T242">
+<Obj plainTxt="False" ><![CDATA[Reserva - Pasajeros.GetCellData]]></Obj>
+<Details plainTxt="False" ><![CDATA[3, 0]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:08]]></Time>
+<TimeTick>1484690228</TimeTick>
+<NodeArgs eType="Replay" icon="18" nRep="1200" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="78" >
+<Disp><![CDATA[Reserva - Pasajeros.GetCellData]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="14" nRep="1167" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="62" >
+<Disp><![CDATA[Reserva (T)]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="1166" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="62" >
+<Disp><![CDATA[Interact-v7.3-CVT-05Jul16]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T243">
+<Obj ><![CDATA[Reservation details]]></Obj>
+<Details ><![CDATA[Ticket details 
+1.TL2359/19JAN-THU
+
+Price Quote 1:
+2 ADT@5104.00ARS+1464.80ARS(taxes/fee/charges)=6568.80ARS
+
+Price Quote 2:
+1 CNN@5104.00ARS+1464.80ARS(taxes/fee/charges)=6568.80ARS
+
+Price Quote 3:
+1 INF@899.00ARS+62.90ARS(taxes/fee/charges)=961.90ARS
+Total:
+16211.00ARS+4457.30ARS(tax)=20668.30
+
+Passengers details
+<table width="867">1.1 - JURIXUHO/WURIGJI |<img src="file:///C:/Sabre Interact/Sabre Interact/Res/v7.10PreRelease/app/graphic/vsm-mobilePhone.gif">&nbsp;<img src="file:///C:/Sabre Interact/Sabre Interact/Res/v7.10PreRelease/app/graphic/vsm-email.gif">&nbsp;<img src="file:///C:/Sabre Interact/Sabre Interact/Res/v7.10PreRelease/app/graphic/vsm-INF.gif">&nbsp;<img src="file:///C:/Sabre Interact/Sabre Interact/Res/v7.10PreRelease/app/graphic/sm-foid.gif">&nbsp;<img src="file:///C:/Sabre Interact/Sabre Interact/Res/v7.10PreRelease/app/graphic/tsa.gif">&nbsp;OSI&nbsp;
+<table width="867">2.1 - JURIXUHO/FOTOKI |<img src="file:///C:/Sabre Interact/Sabre Interact/Res/v7.10PreRelease/app/graphic/sm-foid.gif">&nbsp;<img src="file:///C:/Sabre Interact/Sabre Interact/Res/v7.10PreRelease/app/graphic/tsa.gif">&nbsp;
+<table width="867">3.1 - JURIXUHO/KOWIRU |<img src="file:///C:/Sabre Interact/Sabre Interact/Res/v7.10PreRelease/app/graphic/sm_child.gif">&nbsp;CHLD&nbsp;<img src="file:///C:/Sabre Interact/Sabre Interact/Res/v7.10PreRelease/app/graphic/sm-foid.gif">&nbsp;<img src="file:///C:/Sabre Interact/Sabre Interact/Res/v7.10PreRelease/app/graphic/tsa.gif">&nbsp;
+<table width="867">4.I - JURIXUHO/DUKUVOYU - INF |OSI&nbsp;]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:08]]></Time>
+<TimeTick>1484690228</TimeTick>
+<NodeArgs eType="User" icon="10" nRep="1201" status="Passed" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="98" >
+<Disp><![CDATA[Reservation details]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="17/01/2017 - 18:56:56" eTime="17/01/2017 - 18:57:08" passed="2" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="1145" status="Passed" >
+<Disp><![CDATA[ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado] Summary]]></Disp>
+</NodeArgs>
+</Action>
+<Action rID="T244">
+<AName><![CDATA[ATC_Emision_Issue [ATC_Emision_Issue]]]></AName>
+<Step rID="T245">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.3-07Aug16]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaWindow]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:08]]></Time>
+<TimeTick>1484690228</TimeTick>
+<Step rID="T246">
+<Obj plainTxt="False" ><![CDATA[Reserva (T)]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaInternalFrame]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:08]]></Time>
+<TimeTick>1484690228</TimeTick>
+<Step rID="T247">
+<Obj plainTxt="False" ><![CDATA[Reserva.GetCellData]]></Obj>
+<Details plainTxt="False" ><![CDATA[0, 0]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:08]]></Time>
+<TimeTick>1484690228</TimeTick>
+<NodeArgs eType="Replay" icon="18" nRep="1207" Source="ATC_Emision_Issue [ATC_Emision_Issue]" SourceLine="4" >
+<Disp><![CDATA[Reserva.GetCellData]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T248">
+<Obj plainTxt="False" ><![CDATA[Emitir.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA["LEFT"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:08]]></Time>
+<TimeTick>1484690228</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="1209" Source="ATC_Emision_Issue [ATC_Emision_Issue]" SourceLine="10" >
+<Disp><![CDATA[Emitir.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="14" nRep="1206" Source="ATC_Emision_Issue [ATC_Emision_Issue]" SourceLine="4" >
+<Disp><![CDATA[Reserva (T)]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="1205" Source="ATC_Emision_Issue [ATC_Emision_Issue]" SourceLine="4" >
+<Disp><![CDATA[Interact-v7.3-07Aug16]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T249">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.8-CVT-04Oct16]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaWindow]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:29]]></Time>
+<TimeTick>1484690249</TimeTick>
+<Step rID="T250">
+<Obj plainTxt="False" ><![CDATA[PopupDialog]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaDialog]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:29]]></Time>
+<TimeTick>1484690249</TimeTick>
+<Step rID="T251">
+<Obj plainTxt="False" ><![CDATA[MetalTitlePane.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:29]]></Time>
+<TimeTick>1484690249</TimeTick>
+<NodeArgs eType="Replay" icon="15" nRep="1214" Source="ATC_Emision_Issue [ATC_Emision_Issue]" SourceLine="18" >
+<Disp><![CDATA[MetalTitlePane.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="1213" Source="ATC_Emision_Issue [ATC_Emision_Issue]" SourceLine="18" >
+<Disp><![CDATA[PopupDialog]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="1212" Source="ATC_Emision_Issue [ATC_Emision_Issue]" SourceLine="18" >
+<Disp><![CDATA[Interact-v7.8-CVT-04Oct16]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T252">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.3-07Aug16]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaWindow]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:31]]></Time>
+<TimeTick>1484690251</TimeTick>
+<Step rID="T253">
+<Obj plainTxt="False" ><![CDATA[Cotizar itinerario]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaDialog]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:31]]></Time>
+<TimeTick>1484690251</TimeTick>
+<Step rID="T254">
+<Obj plainTxt="False" ><![CDATA[OK.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:31]]></Time>
+<TimeTick>1484690251</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="1219" Source="ATC_Emision_Issue [ATC_Emision_Issue]" SourceLine="34" >
+<Disp><![CDATA[OK.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="1218" Source="ATC_Emision_Issue [ATC_Emision_Issue]" SourceLine="34" >
+<Disp><![CDATA[Cotizar itinerario]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T255">
+<Obj plainTxt="False" ><![CDATA[Emitir TKT]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaDialog]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:31]]></Time>
+<TimeTick>1484690251</TimeTick>
+<Step rID="T256">
+<Obj plainTxt="False" ><![CDATA[FormaDePago.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:31]]></Time>
+<TimeTick>1484690251</TimeTick>
+<NodeArgs eType="Replay" icon="16" nRep="1221" Source="ATC_Emision_Issue [ATC_Emision_Issue]" SourceLine="47" >
+<Disp><![CDATA[FormaDePago.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="1220" Source="ATC_Emision_Issue [ATC_Emision_Issue]" SourceLine="47" >
+<Disp><![CDATA[Emitir TKT]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="1217" Source="ATC_Emision_Issue [ATC_Emision_Issue]" SourceLine="34" >
+<Disp><![CDATA[Interact-v7.3-07Aug16]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T257">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.8-CVT-04Oct16]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaWindow]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:31]]></Time>
+<TimeTick>1484690251</TimeTick>
+<Step rID="T258">
+<Obj plainTxt="False" ><![CDATA[Emitir TKT]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaDialog]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:31]]></Time>
+<TimeTick>1484690251</TimeTick>
+<Step rID="T259">
+<Obj plainTxt="False" ><![CDATA[*.Select]]></Obj>
+<Details plainTxt="False" ><![CDATA["EFECTIVO"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:31]]></Time>
+<TimeTick>1484690251</TimeTick>
+<NodeArgs eType="Replay" icon="16" nRep="1225" Source="ATC_Emision_Issue [ATC_Emision_Issue]" SourceLine="169" >
+<Disp><![CDATA[*.Select]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T260">
+<Obj plainTxt="False" ><![CDATA[<html><head><style type='text/.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA["LEFT"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:31]]></Time>
+<TimeTick>1484690251</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="1227" Source="ATC_Emision_Issue [ATC_Emision_Issue]" SourceLine="172" >
+<Disp><![CDATA[<html><head><style type='text/.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="1224" Source="ATC_Emision_Issue [ATC_Emision_Issue]" SourceLine="169" >
+<Disp><![CDATA[Emitir TKT]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="1223" Source="ATC_Emision_Issue [ATC_Emision_Issue]" SourceLine="169" >
+<Disp><![CDATA[Interact-v7.8-CVT-04Oct16]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T261">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.3-07Aug16]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaWindow]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:31]]></Time>
+<TimeTick>1484690251</TimeTick>
+<Step rID="T262">
+<Obj plainTxt="False" ><![CDATA[Forma de pago: Tarjeta]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaDialog]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:31]]></Time>
+<TimeTick>1484690251</TimeTick>
+<Step rID="T263">
+<Obj plainTxt="False" ><![CDATA[OK.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:31]]></Time>
+<TimeTick>1484690251</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="1232" Source="ATC_Emision_Issue [ATC_Emision_Issue]" SourceLine="353" >
+<Disp><![CDATA[OK.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="1231" Source="ATC_Emision_Issue [ATC_Emision_Issue]" SourceLine="353" >
+<Disp><![CDATA[Forma de pago: Tarjeta]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="1230" Source="ATC_Emision_Issue [ATC_Emision_Issue]" SourceLine="353" >
+<Disp><![CDATA[Interact-v7.3-07Aug16]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T264">
+<Obj plainTxt="False" ><![CDATA[eLatam-v7.8-CVT-05Oct16]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaWindow]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:31]]></Time>
+<TimeTick>1484690251</TimeTick>
+<Step rID="T265">
+<Obj plainTxt="False" ><![CDATA[Múltiplas Formas de Pagamento]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaDialog]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:31]]></Time>
+<TimeTick>1484690251</TimeTick>
+<Step rID="T266">
+<Obj plainTxt="False" ><![CDATA[Ok.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:31]]></Time>
+<TimeTick>1484690251</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="1237" Source="ATC_Emision_Issue [ATC_Emision_Issue]" SourceLine="356" >
+<Disp><![CDATA[Ok.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="1236" Source="ATC_Emision_Issue [ATC_Emision_Issue]" SourceLine="356" >
+<Disp><![CDATA[Múltiplas Formas de Pagamento]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="1235" Source="ATC_Emision_Issue [ATC_Emision_Issue]" SourceLine="356" >
+<Disp><![CDATA[eLatam-v7.8-CVT-05Oct16]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T267">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.3-07Aug16]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaWindow]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:34]]></Time>
+<TimeTick>1484690254</TimeTick>
+<Step rID="T268">
+<Obj plainTxt="False" ><![CDATA[Verificación del crédito]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaDialog]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:34]]></Time>
+<TimeTick>1484690254</TimeTick>
+<Step rID="T269">
+<Obj plainTxt="False" ><![CDATA[OK.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:34]]></Time>
+<TimeTick>1484690254</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="1242" Source="ATC_Emision_Issue [ATC_Emision_Issue]" SourceLine="365" >
+<Disp><![CDATA[OK.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="1241" Source="ATC_Emision_Issue [ATC_Emision_Issue]" SourceLine="365" >
+<Disp><![CDATA[Verificación del crédito]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T270">
+<Obj plainTxt="False" ><![CDATA[PopupDialog]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaDialog]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:34]]></Time>
+<TimeTick>1484690254</TimeTick>
+<Step rID="T271">
+<Obj plainTxt="False" ><![CDATA[DetalleError.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:34]]></Time>
+<TimeTick>1484690254</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="1244" Source="ATC_Emision_Issue [ATC_Emision_Issue]" SourceLine="491" >
+<Disp><![CDATA[DetalleError.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T272">
+<Obj plainTxt="False" ><![CDATA[OK.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA["LEFT"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:35]]></Time>
+<TimeTick>1484690255</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="1246" Source="ATC_Emision_Issue [ATC_Emision_Issue]" SourceLine="496" >
+<Disp><![CDATA[OK.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="1243" Source="ATC_Emision_Issue [ATC_Emision_Issue]" SourceLine="491" >
+<Disp><![CDATA[PopupDialog]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="1240" Source="ATC_Emision_Issue [ATC_Emision_Issue]" SourceLine="365" >
+<Disp><![CDATA[Interact-v7.3-07Aug16]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T273">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.8-CVT-04Oct16]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaWindow]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:35]]></Time>
+<TimeTick>1484690255</TimeTick>
+<Step rID="T274">
+<Obj plainTxt="False" ><![CDATA[PopupDialog_2]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaDialog]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:35]]></Time>
+<TimeTick>1484690255</TimeTick>
+<Step rID="T275">
+<Obj plainTxt="False" ><![CDATA[<html><head><style type='text/.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:35]]></Time>
+<TimeTick>1484690255</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="1249" Source="ATC_Emision_Issue [ATC_Emision_Issue]" SourceLine="497" >
+<Disp><![CDATA[<html><head><style type='text/.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T276">
+<Obj plainTxt="False" ><![CDATA[<html><head><style type='text/.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA["LEFT"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:35]]></Time>
+<TimeTick>1484690255</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="1251" Source="ATC_Emision_Issue [ATC_Emision_Issue]" SourceLine="499" >
+<Disp><![CDATA[<html><head><style type='text/.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="1248" Source="ATC_Emision_Issue [ATC_Emision_Issue]" SourceLine="497" >
+<Disp><![CDATA[PopupDialog_2]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T277">
+<Obj plainTxt="False" ><![CDATA[Emitir TKT_2]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaDialog]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:36]]></Time>
+<TimeTick>1484690256</TimeTick>
+<Step rID="T278">
+<Obj plainTxt="False" ><![CDATA[<html><head><style type='text/.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA["LEFT"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:36]]></Time>
+<TimeTick>1484690256</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="1254" Source="ATC_Emision_Issue [ATC_Emision_Issue]" SourceLine="501" >
+<Disp><![CDATA[<html><head><style type='text/.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="1253" Source="ATC_Emision_Issue [ATC_Emision_Issue]" SourceLine="501" >
+<Disp><![CDATA[Emitir TKT_2]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="1247" Source="ATC_Emision_Issue [ATC_Emision_Issue]" SourceLine="497" >
+<Disp><![CDATA[Interact-v7.8-CVT-04Oct16]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T279">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.3-07Aug16]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaWindow]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:40]]></Time>
+<TimeTick>1484690260</TimeTick>
+<Step rID="T280">
+<Obj plainTxt="False" ><![CDATA[Emitir TKT]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaDialog]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:40]]></Time>
+<TimeTick>1484690260</TimeTick>
+<Step rID="T281">
+<Obj plainTxt="False" ><![CDATA[Cancelar.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:40]]></Time>
+<TimeTick>1484690260</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="1259" Source="ATC_Emision_Issue [ATC_Emision_Issue]" SourceLine="503" >
+<Disp><![CDATA[Cancelar.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="1258" Source="ATC_Emision_Issue [ATC_Emision_Issue]" SourceLine="503" >
+<Disp><![CDATA[Emitir TKT]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="1257" Source="ATC_Emision_Issue [ATC_Emision_Issue]" SourceLine="503" >
+<Disp><![CDATA[Interact-v7.3-07Aug16]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T282">
+<Obj ><![CDATA[Issue not generated]]></Obj>
+<Details ><![CDATA[Issue not generated]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:40]]></Time>
+<TimeTick>1484690260</TimeTick>
+<NodeArgs eType="User" icon="10" nRep="1260" status="Passed" Source="ATC_Emision_Issue [ATC_Emision_Issue]" SourceLine="507" >
+<Disp><![CDATA[Issue not generated]]></Disp>
+<BtmPane vType="ViewerGen.SSViewerGen" >
+<Path><![CDATA[ZIP::Act6\Row0\ssf4.xml]]></Path>
+</BtmPane>
+</NodeArgs>
+</Step>
+<Action rID="T283">
+<AName><![CDATA[ATC_Terminar_Transaccion(Ignorar_Y_Cerrar) [ATC_Terminar_Transaccion(Ignorar_Y_Cerrar)]]]></AName>
+<Step rID="T284">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.3-07Aug16]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:40]]></Time>
+<TimeTick>1484690260</TimeTick>
+<Step rID="T285">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.3-07Aug16.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["&lt__MicCtrlDwn&gti&lt__MicCtrlUp&gt"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:40]]></Time>
+<TimeTick>1484690260</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="1264" Source="ATC_Terminar_Transaccion(Ignorar_Y_Cerrar) [ATC_Terminar_Transaccion(Ignorar_Y_Cerrar)]" SourceLine="4" >
+<Disp><![CDATA[Interact-v7.3-07Aug16.Type]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="12" nRep="1263" Source="ATC_Terminar_Transaccion(Ignorar_Y_Cerrar) [ATC_Terminar_Transaccion(Ignorar_Y_Cerrar)]" SourceLine="4" >
+<Disp><![CDATA[Interact-v7.3-07Aug16]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T286">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.3-07Aug16]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaWindow]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:40]]></Time>
+<TimeTick>1484690260</TimeTick>
+<Step rID="T287">
+<Obj plainTxt="False" ><![CDATA[Ignorar]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaDialog]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:40]]></Time>
+<TimeTick>1484690260</TimeTick>
+<Step rID="T288">
+<Obj plainTxt="False" ><![CDATA[Ignorar y Cerrar (L).Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["ON"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:40]]></Time>
+<TimeTick>1484690260</TimeTick>
+<NodeArgs eType="Replay" icon="13" nRep="1268" Source="ATC_Terminar_Transaccion(Ignorar_Y_Cerrar) [ATC_Terminar_Transaccion(Ignorar_Y_Cerrar)]" SourceLine="9" >
+<Disp><![CDATA[Ignorar y Cerrar (L).Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T289">
+<Obj plainTxt="False" ><![CDATA[OK.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA["LEFT"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:40]]></Time>
+<TimeTick>1484690260</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="1270" Source="ATC_Terminar_Transaccion(Ignorar_Y_Cerrar) [ATC_Terminar_Transaccion(Ignorar_Y_Cerrar)]" SourceLine="10" >
+<Disp><![CDATA[OK.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T290">
+<Obj plainTxt="False" ><![CDATA[Ignorar y Cerrar (L).Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:40]]></Time>
+<TimeTick>1484690260</TimeTick>
+<NodeArgs eType="Replay" icon="13" nRep="1273" Source="ATC_Terminar_Transaccion(Ignorar_Y_Cerrar) [ATC_Terminar_Transaccion(Ignorar_Y_Cerrar)]" SourceLine="11" >
+<Disp><![CDATA[Ignorar y Cerrar (L).Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="1267" Source="ATC_Terminar_Transaccion(Ignorar_Y_Cerrar) [ATC_Terminar_Transaccion(Ignorar_Y_Cerrar)]" SourceLine="9" >
+<Disp><![CDATA[Ignorar]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="1266" Source="ATC_Terminar_Transaccion(Ignorar_Y_Cerrar) [ATC_Terminar_Transaccion(Ignorar_Y_Cerrar)]" SourceLine="9" >
+<Disp><![CDATA[Interact-v7.3-07Aug16]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="17/01/2017 - 18:57:40" eTime="17/01/2017 - 18:57:40" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="1261" >
+<Disp><![CDATA[ATC_Terminar_Transaccion(Ignorar_Y_Cerrar) [ATC_Terminar_Transaccion(Ignorar_Y_Cerrar)] Summary]]></Disp>
+</NodeArgs>
+</Action>
+<Step rID="T291">
+<Obj plainTxt="False" ><![CDATA[Stop global iteration replay]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run stopped by user.]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:41]]></Time>
+<TimeTick>1484690261</TimeTick>
+<NodeArgs eType="General" icon="17" nRep="1275" >
+<Disp><![CDATA[Stop global iteration replay]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="17/01/2017 - 18:57:08" eTime="17/01/2017 - 18:57:41" passed="1" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="1203" status="Passed" >
+<Disp><![CDATA[ATC_Emision_Issue [ATC_Emision_Issue] Summary]]></Disp>
+</NodeArgs>
+</Action>
+<NodeArgs eType="StartIteration" icon="3" nRep="6" status="Passed" >
+<Disp><![CDATA[ATC_00030_Emision_Issue Iteration 1 (Row 1)]]></Disp>
+</NodeArgs>
+</DIter>
+<DIter rID="T292" iterID="2" >
+<Step rID="T293">
+<Obj plainTxt="False" ><![CDATA[StartUp Browser]]></Obj>
+<Details plainTxt="False" ><![CDATA[Browser]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:41]]></Time>
+<TimeTick>1484690261</TimeTick>
+<Step rID="T294">
+<Obj plainTxt="False" ><![CDATA[StartUp Browser]]></Obj>
+<Details plainTxt="False" ><![CDATA[Navigate to https://www.bancochile.cl/bchile-perfilamiento]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:41]]></Time>
+<TimeTick>1484690261</TimeTick>
+<NodeArgs eType="Replay" icon="19" nRep="1281" nType="Navigate to https://www.bancochile.cl/bchile-perfilamiento" Source="Action0" SourceLine="3" >
+<Disp><![CDATA[StartUp Browser]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T295">
+<Obj plainTxt="False" ><![CDATA[StartUp Browser]]></Obj>
+<Details plainTxt="False" ><![CDATA[The UFT Browser Helper Object is required for this step. Make sure BHOManager Class add-on is enabled in Internet Explorer.]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:41]]></Time>
+<TimeTick>1484690261</TimeTick>
+<Step rID="T296">
+<Obj plainTxt="False" ><![CDATA[StartUp Browser]]></Obj>
+<Details plainTxt="False" ><![CDATA[Object's physical description:<br>Mercury Class = Browser<br>]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:41]]></Time>
+<TimeTick>1484690261</TimeTick>
+<NodeArgs eType="Replay" icon="20" nRep="1283" status="Warning" nType="Description" Source="Action0" SourceLine="3" >
+<Disp><![CDATA[StartUp Browser]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="19" nRep="1282" status="Warning" nType="Run Error" Source="Action0" SourceLine="3" >
+<Disp><![CDATA[StartUp Browser]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="19" nRep="1280" status="Warning" Source="Action0" SourceLine="3" >
+<Disp><![CDATA[StartUp Browser]]></Disp>
+</NodeArgs>
+</Step>
+<Action rID="T297">
+<AName><![CDATA[ATC_Genera_Carpeta_Evidencias_Issue [ATC_Genera_Carpetas_Evidencias]]]></AName>
+<Summary sTime="17/01/2017 - 18:57:41" eTime="17/01/2017 - 18:57:43" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="1284" >
+<Disp><![CDATA[ATC_Genera_Carpeta_Evidencias_Issue [ATC_Genera_Carpetas_Evidencias] Summary]]></Disp>
+</NodeArgs>
+</Action>
+<Action rID="T298">
+<AName><![CDATA[ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]]]></AName>
+<Step rID="T299">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.3-CVT-05Jul16]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaWindow]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:43]]></Time>
+<TimeTick>1484690263</TimeTick>
+<Step rID="T300">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.3-CVT-05Jul16.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:43]]></Time>
+<TimeTick>1484690263</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="1288" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="0" >
+<Disp><![CDATA[Interact-v7.3-CVT-05Jul16.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="1287" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="0" >
+<Disp><![CDATA[Interact-v7.3-CVT-05Jul16]]></Disp>
+</NodeArgs>
+</Step>
+<Action rID="T301">
+<AName><![CDATA[ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]]]></AName>
+<Step rID="T302">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.8-CVT-04Oct16]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaWindow]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:43]]></Time>
+<TimeTick>1484690263</TimeTick>
+<Step rID="T303">
+<Obj plainTxt="False" ><![CDATA[NonModalPopupPresImpl$NonModal]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaInternalFrame]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:43]]></Time>
+<TimeTick>1484690263</TimeTick>
+<Step rID="T304">
+<Obj plainTxt="False" ><![CDATA[PrinterIcon.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:43]]></Time>
+<TimeTick>1484690263</TimeTick>
+<NodeArgs eType="Replay" icon="15" nRep="1292" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="4" >
+<Disp><![CDATA[PrinterIcon.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="14" nRep="1291" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="4" >
+<Disp><![CDATA[NonModalPopupPresImpl$NonModal]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="1290" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="4" >
+<Disp><![CDATA[Interact-v7.8-CVT-04Oct16]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T305">
+<Obj ><![CDATA[Printer Ok]]></Obj>
+<Details ><![CDATA[Printer already installed]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:43]]></Time>
+<TimeTick>1484690263</TimeTick>
+<NodeArgs eType="User" icon="10" nRep="1293" status="Passed" Source="ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact]" SourceLine="5" >
+<Disp><![CDATA[Printer Ok]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T306">
+<Obj plainTxt="False" ><![CDATA[Stop action replay]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run stopped by user.]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:43]]></Time>
+<TimeTick>1484690263</TimeTick>
+<NodeArgs eType="General" icon="17" nRep="1294" >
+<Disp><![CDATA[Stop action replay]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="17/01/2017 - 18:57:43" eTime="17/01/2017 - 18:57:43" passed="1" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="1289" status="Passed" >
+<Disp><![CDATA[ATC_Configuracion_Impresora_Sabre_Interact [ATC_Login_Interact] Summary]]></Disp>
+</NodeArgs>
+</Action>
+<Step rID="T307">
+<Obj plainTxt="False" ><![CDATA[Stop action replay]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run stopped by user.]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:43]]></Time>
+<TimeTick>1484690263</TimeTick>
+<NodeArgs eType="General" icon="17" nRep="1296" >
+<Disp><![CDATA[Stop action replay]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="17/01/2017 - 18:57:43" eTime="17/01/2017 - 18:57:43" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="1286" status="Passed" >
+<Disp><![CDATA[ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact] Summary]]></Disp>
+</NodeArgs>
+</Action>
+<Action rID="T308">
+<AName><![CDATA[ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]]]></AName>
+<Step rID="T309">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.8-CVT-04Oct16]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:44]]></Time>
+<TimeTick>1484690264</TimeTick>
+<Step rID="T310">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.8-CVT-04Oct16.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["&lt__MicF1&gt"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:44]]></Time>
+<TimeTick>1484690264</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="1301" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="15" >
+<Disp><![CDATA[Interact-v7.8-CVT-04Oct16.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T311">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.8-CVT-04Oct16.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["&lt__MicShiftDwn&gt&lt__MicF2&gt&lt__MicShiftUp&gt"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:44]]></Time>
+<TimeTick>1484690264</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="1303" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="18" >
+<Disp><![CDATA[Interact-v7.8-CVT-04Oct16.Type]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="12" nRep="1300" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="15" >
+<Disp><![CDATA[Interact-v7.8-CVT-04Oct16]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T312">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.3-CVT-05Jul16]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaWindow]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:44]]></Time>
+<TimeTick>1484690264</TimeTick>
+<Step rID="T313">
+<Obj plainTxt="False" ><![CDATA[Recuperar reserva existente]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaDialog]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:44]]></Time>
+<TimeTick>1484690264</TimeTick>
+<Step rID="T314">
+<Obj plainTxt="False" ><![CDATA[CodigoDeReserva.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:44]]></Time>
+<TimeTick>1484690264</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="1306" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="20" >
+<Disp><![CDATA[CodigoDeReserva.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T315">
+<Obj plainTxt="False" ><![CDATA[CodigoDeReserva.SetFocus]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:44]]></Time>
+<TimeTick>1484690264</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="1308" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="25" >
+<Disp><![CDATA[CodigoDeReserva.SetFocus]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T316">
+<Obj plainTxt="False" ><![CDATA[CodigoDeReserva.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["NLCOSW"]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:44]]></Time>
+<TimeTick>1484690264</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="1310" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="26" >
+<Disp><![CDATA[CodigoDeReserva.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T317">
+<Obj plainTxt="False" ><![CDATA[Stop Run]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run stopped by user.]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:45]]></Time>
+<TimeTick>1484690265</TimeTick>
+<NodeArgs eType="General" icon="17" nRep="1311" >
+<Disp><![CDATA[Stop Run]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="1305" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="20" >
+<Disp><![CDATA[Recuperar reserva existente]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="1304" Source="ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado]" SourceLine="20" >
+<Disp><![CDATA[Interact-v7.3-CVT-05Jul16]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="17/01/2017 - 18:57:43" eTime="17/01/2017 - 18:57:45" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="1298" >
+<Disp><![CDATA[ATC_Verificacion_PNR [ATC_Verificacion_PNR_Generado] Summary]]></Disp>
+</NodeArgs>
+</Action>
+<NodeArgs eType="StartIteration" icon="3" nRep="1278" status="Warning" >
+<Disp><![CDATA[ATC_00030_Emision_Issue Iteration 2 (Row 2)]]></Disp>
+</NodeArgs>
+</DIter>
+<Step rID="T318">
+<Obj plainTxt="False" ><![CDATA[Stop Run]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run stopped by user.]]></Details>
+<Time><![CDATA[17/01/2017 - 18:57:45]]></Time>
+<TimeTick>1484690265</TimeTick>
+<NodeArgs eType="General" icon="21" nRep="1314" >
+<Disp><![CDATA[Stop Run]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="17/01/2017 - 18:55:35" eTime="17/01/2017 - 18:57:45" passed="6" failed="0" warnings="1" stopped="True" ></Summary>
+<NodeArgs eType="StartTest" icon="1" nRep="3" status="Warning" >
+<Disp><![CDATA[Test ATC_00030_Emision_Issue Summary]]></Disp>
+</NodeArgs>
+</Doc>
+</Report>

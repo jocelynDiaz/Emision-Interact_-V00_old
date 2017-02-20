@@ -1,0 +1,330 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE Report
+[
+<!ELEMENT Report (General ,(Doc|BPT)) >
+<!ATTLIST Report ver CDATA #REQUIRED tmZone CDATA #REQUIRED>
+
+<!ELEMENT General ( DocLocation ) >
+<!ATTLIST General productName CDATA #REQUIRED productVer CDATA #REQUIRED os CDATA #REQUIRED host CDATA #REQUIRED qcserver CDATA #IMPLIED qcproject CDATA #IMPLIED SolManSolutionId CDATA #IMPLIED SolManProjectId CDATA #IMPLIED SolManTestPlanId CDATA #IMPLIED SolManTestPackageId CDATA #IMPLIED SolManUserInfoData CDATA #IMPLIED  >
+
+<!ELEMENT BPT (DName,Res,DVer?,TSet?,TInst?,NodeArgs,AdditionalInfo*,Doc*) >
+<!ATTLIST BPT rID ID #REQUIRED >
+
+<!ELEMENT Doc (DName,ConfName?,Res,DVer?,TSet?,TInst?,RunType?,DT?,AdditionalInfo*,Step*,DIter*,Step*,Action*,Doc*,Summary?,TestMaintenanceSummary*,NodeArgs?) >
+<!ATTLIST Doc rID ID #REQUIRED type (Test|BC|BPTWrapperTest|Flow|Group|Action) "Test" productName CDATA #REQUIRED BCIter CDATA #IMPLIED >
+
+<!ELEMENT RunType ( #PCDATA )>
+<!ATTLIST RunType fmStep (False|True) "False" batch (False|True) "False" upDesc (False|True) "False" upChk (False|True) "False" upAS (False|True) "False">
+
+<!ELEMENT DName ( #PCDATA ) >
+
+<!ELEMENT ConfName ( #PCDATA ) >
+
+<!ELEMENT Res ( #PCDATA ) >
+
+<!ELEMENT AdditionalInfo (AdditionalDataName,AdditionalDataValue ) >
+
+<!ELEMENT AdditionalDataName ( #PCDATA ) >
+
+<!ELEMENT AdditionalDataValue ( #PCDATA ) >
+
+<!ELEMENT DVer ( #PCDATA ) >
+
+<!ELEMENT TSet ( #PCDATA ) >
+
+<!ELEMENT TInst ( #PCDATA ) >
+
+<!ELEMENT DIter (Step*,Action+,Summary?,NodeArgs)>
+<!ATTLIST DIter rID ID #REQUIRED iterID CDATA #REQUIRED>
+
+<!ELEMENT DocLocation ( #PCDATA )>
+
+<!ELEMENT Action (AName,AIter*,(Step|HtmlStep|Action)*, Summary,ActionMaintenanceSummary*, NodeArgs ) >
+<!ATTLIST Action rID ID #REQUIRED>
+
+<!ELEMENT AIter ((Step|HtmlStep|Action)*,DataMapping?, Summary?,NodeArgs) >
+<!ATTLIST AIter rID ID #REQUIRED iterID CDATA #REQUIRED isCountable (False|True) "False" >
+
+<!ELEMENT AName ( #PCDATA ) >
+
+<!ELEMENT TestMaintenanceSummary (ActionMaintenanceSummary*) >
+<!ATTLIST TestMaintenanceSummary ObjectsAdded CDATA #REQUIRED ObjectsUpdated CDATA #REQUIRED StepsUpdated CDATA #REQUIRED StepsComments CDATA #REQUIRED><!ELEMENT ActionMaintenanceSummary (ObjectChange* ) >
+<!ATTLIST ActionMaintenanceSummary Action CDATA #REQUIRED Objects CDATA #REQUIRED Updated CDATA #REQUIRED LinesTotal CDATA #REQUIRED Added CDATA #REQUIRED LinesUpdated CDATA #REQUIRED>
+
+<!ELEMENT ObjectChange  (Hierarchy, PropertyChangeList* ) >
+<!ATTLIST ObjectChange Operation CDATA #IMPLIED OriginalRepository CDATA #IMPLIED>
+
+<!ELEMENT PropertyChangeList (PropertyDef*) >
+
+<!ELEMENT PropertyDef (OriginalValue, NewValue) >
+<!ATTLIST PropertyDef PropName CDATA #REQUIRED OriginRegularExpression (True|False) "False" NewRegularExpression (True|False) "False" AddedProperty (True|False) "False" >
+
+<!ELEMENT OriginalValue ( #PCDATA )>
+
+<!ELEMENT NewValue ( #PCDATA )>
+
+<!ELEMENT Hierarchy  (ObjectName, Hierarchy*) >
+<!ATTLIST Hierarchy MicClass CDATA #REQUIRED>
+
+<!ELEMENT ObjectName  ( #PCDATA ) >
+
+<!ELEMENT Step (Obj,Details,Time,TimeTick* ,(Step|HtmlStep|Doc)*, DataMapping?, NodeArgs) >
+<!ATTLIST Step rID ID #REQUIRED retval CDATA #IMPLIED>
+
+<!ELEMENT HtmlStep (HTML,TimeTick*,(Step|HtmlStep|Doc)*,NodeArgs) >
+<!ATTLIST HtmlStep rID ID #REQUIRED >
+
+<!ELEMENT Obj ( #PCDATA ) >
+<!ATTLIST Obj plainTxt (False|True) "True">
+
+<!ELEMENT Details ( #PCDATA ) >
+<!ATTLIST Details plainTxt (False|True) "True">
+
+<!ELEMENT Time ( #PCDATA ) >
+
+<!ELEMENT HTML ( #PCDATA ) >
+
+<!ELEMENT Disp ( #PCDATA ) >
+
+<!ELEMENT TimeTick ( #PCDATA ) >
+
+<!ELEMENT DataMapping ( DataMappedItem* )>
+<!ELEMENT DataMappedItem EMPTY >
+<!ATTLIST DataMappedItem dsName CDATA #REQUIRED >
+<!ATTLIST DataMappedItem rowId CDATA #REQUIRED >
+
+<!ELEMENT NodeArgs (Disp,TopPane?,BtmPane?,ExtendedInfo? )>
+<!ATTLIST NodeArgs eType CDATA #REQUIRED icon CDATA #REQUIRED nRep CDATA #REQUIRED UserNote CDATA #IMPLIED filter (False|True) "True">
+<!ATTLIST NodeArgs status (Passed|Failed|Done|Warning|Information) "Done">
+<!ATTLIST NodeArgs iconSel CDATA #IMPLIED nType CDATA #IMPLIED MovieMarker CDATA "">
+<!ATTLIST NodeArgs Source CDATA #IMPLIED SourceLine CDATA #IMPLIED StepFlowItemKey CDATA #IMPLIED >
+
+<!ELEMENT TopPane (Path)>
+
+<!ELEMENT BtmPane ( (Path|WR)?,ASHilite?)>
+<!ATTLIST BtmPane vType CDATA "HTML">
+
+<!ELEMENT Path ( #PCDATA ) >
+
+<!ELEMENT ASHilite ( #PCDATA ) >
+
+<!ELEMENT WR ( #PCDATA ) >
+
+<!ELEMENT ExtendedInfo ( StepData ) >
+
+<!ATTLIST ExtendedInfo StepType CDATA #REQUIRED>
+<!ELEMENT DT (NodeArgs) >
+<!ATTLIST DT rID ID #REQUIRED>
+
+<!ELEMENT Summary (Param*)>
+<!ATTLIST Summary sTime CDATA #IMPLIED eTime CDATA #IMPLIED passed CDATA #IMPLIED failed CDATA #IMPLIED warnings CDATA #IMPLIED retval CDATA #IMPLIED stopped (False|True) "False" >
+
+<!ELEMENT Param (ParamName,ParamVal)+ >
+<!ATTLIST Param paramInOut (In|Out) "In">
+
+<!ELEMENT ParamName ( #PCDATA ) >
+
+<!ELEMENT ParamVal ( #PCDATA ) >
+
+]
+>
+<Report ver="2.0" tmZone="Hora est. Sudamérica Pacífico">
+<General productName="HP Unified Functional Testing" productVer="12.02" os="Windows 7" host="GE-HP-LATAM"><DocLocation><![CDATA[C:\casos\Emision Interact_ V00\ATC_00030_Emision_Issue]]></DocLocation></General>
+<Doc rID="T1"   productName= "HP Unified Functional Testing"  >
+<DName><![CDATA[ATC_00030_Emision_Issue]]></DName>
+<Res><![CDATA[Res8]]></Res>
+<DT rID="T2">
+<NodeArgs eType="Table" icon="2" nRep="4" filter="False" >
+<Disp><![CDATA[Run-Time Data Table]]></Disp>
+<BtmPane vType="Table" >
+<Path><![CDATA[Default.xls]]></Path>
+</BtmPane>
+</NodeArgs>
+</DT>
+<DIter rID="T3" iterID="1" >
+<Action rID="T4">
+<AName><![CDATA[ATC_Genera_Carpeta_Evidencias_Issue [ATC_Genera_Carpetas_Evidencias]]]></AName>
+<Summary sTime="18-01-2017 - 10:08:42" eTime="18-01-2017 - 10:08:43" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="7" >
+<Disp><![CDATA[ATC_Genera_Carpeta_Evidencias_Issue [ATC_Genera_Carpetas_Evidencias] Summary]]></Disp>
+</NodeArgs>
+</Action>
+<Action rID="T5">
+<AName><![CDATA[ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]]]></AName>
+<Step rID="T6">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.3-CVT-05Jul16]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaWindow]]></Details>
+<Time><![CDATA[18-01-2017 - 10:08:43]]></Time>
+<TimeTick>1484744923</TimeTick>
+<Step rID="T7">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.3-CVT-05Jul16.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[18-01-2017 - 10:08:43]]></Time>
+<TimeTick>1484744923</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="11" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="0" >
+<Disp><![CDATA[Interact-v7.3-CVT-05Jul16.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T8">
+<Obj plainTxt="False" ><![CDATA[Iniciar sesión]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaDialog]]></Details>
+<Time><![CDATA[18-01-2017 - 10:08:45]]></Time>
+<TimeTick>1484744925</TimeTick>
+<Step rID="T9">
+<Obj plainTxt="False" ><![CDATA[Iniciar sesión.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[18-01-2017 - 10:08:45]]></Time>
+<TimeTick>1484744925</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="14" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="20" >
+<Disp><![CDATA[Iniciar sesión.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="13" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="20" >
+<Disp><![CDATA[Iniciar sesión]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T10">
+<Obj plainTxt="False" ><![CDATA[Iniciar sesión / Cerrar]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaMenu]]></Details>
+<Time><![CDATA[18-01-2017 - 10:09:27]]></Time>
+<TimeTick>1484744967</TimeTick>
+<Step rID="T11">
+<Obj plainTxt="False" ><![CDATA[Iniciar sesión]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaMenu]]></Details>
+<Time><![CDATA[18-01-2017 - 10:09:27]]></Time>
+<TimeTick>1484744967</TimeTick>
+<Step rID="T12">
+<Obj plainTxt="False" ><![CDATA[Iniciar sesión.Select]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[18-01-2017 - 10:09:27]]></Time>
+<TimeTick>1484744967</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="19" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="23" >
+<Disp><![CDATA[Iniciar sesión.Select]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T13">
+<Obj plainTxt="False" ><![CDATA[Iniciar sesión]]></Obj>
+<Details plainTxt="False" ><![CDATA[Cannot find the "Iniciar sesión" object's parent "Iniciar sesión / Cerrar" (class JavaMenu). Verify that parent properties match an object currently displayed in your application.]]></Details>
+<Time><![CDATA[18-01-2017 - 10:09:48]]></Time>
+<TimeTick>1484744988</TimeTick>
+<Step rID="T14">
+<Obj plainTxt="False" ><![CDATA[Iniciar sesión / Cerrar]]></Obj>
+<Details plainTxt="False" ><![CDATA[Object's physical description:<br>to_class = JavaMenu<br>Label = Iniciar sesión / Cerrar sesión<br>]]></Details>
+<Time><![CDATA[18-01-2017 - 10:09:48]]></Time>
+<TimeTick>1484744988</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="24" status="Warning" nType="Parent description" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="23" >
+<Disp><![CDATA[Iniciar sesión / Cerrar]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="7" nRep="23" status="Failed" nType="Run Error" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="23" >
+<Disp><![CDATA[Iniciar sesión]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="18" status="Failed" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="23" >
+<Disp><![CDATA[Iniciar sesión]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="17" status="Failed" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="23" >
+<Disp><![CDATA[Iniciar sesión / Cerrar]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="10" status="Failed" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="0" >
+<Disp><![CDATA[Interact-v7.3-CVT-05Jul16]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T15">
+<Obj plainTxt="False" ><![CDATA[Run Error]]></Obj>
+<Details plainTxt="False" ><![CDATA[Cannot find the &quot;Iniciar sesión&quot; object's parent &quot;Iniciar sesión / Cerrar&quot; (class JavaMenu). Verify that parent properties match an object currently displayed in your application.<BR>Line (24): &quot;JavaWindow(&quot;Interact-v7.3-CVT-05Jul16&quot;).JavaMenu(&quot;Iniciar sesión / Cerrar&quot;).JavaMenu(&quot;Iniciar sesión&quot;).Select&quot;. ]]></Details>
+<Time><![CDATA[18-01-2017 - 10:09:48]]></Time>
+<TimeTick>1484744988</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="25" status="Failed" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="23" >
+<Disp><![CDATA[Run Error]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T16">
+<Obj plainTxt="False" ><![CDATA[Interact-v7.3-CVT-05Jul16]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaWindow]]></Details>
+<Time><![CDATA[18-01-2017 - 10:11:27]]></Time>
+<TimeTick>1484745087</TimeTick>
+<Step rID="T17">
+<Obj plainTxt="False" ><![CDATA[Iniciar sesión / Cerrar]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaMenu]]></Details>
+<Time><![CDATA[18-01-2017 - 10:11:27]]></Time>
+<TimeTick>1484745087</TimeTick>
+<Step rID="T18">
+<Obj plainTxt="False" ><![CDATA[Iniciar sesión]]></Obj>
+<Details plainTxt="False" ><![CDATA[JavaMenu]]></Details>
+<Time><![CDATA[18-01-2017 - 10:11:27]]></Time>
+<TimeTick>1484745087</TimeTick>
+<Step rID="T19">
+<Obj plainTxt="False" ><![CDATA[Iniciar sesión.Select]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[18-01-2017 - 10:11:27]]></Time>
+<TimeTick>1484745087</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="31" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="23" >
+<Disp><![CDATA[Iniciar sesión.Select]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T20">
+<Obj plainTxt="False" ><![CDATA[Iniciar sesión]]></Obj>
+<Details plainTxt="False" ><![CDATA[Cannot find the "Iniciar sesión" object's parent "Iniciar sesión / Cerrar" (class JavaMenu). Verify that parent properties match an object currently displayed in your application.]]></Details>
+<Time><![CDATA[18-01-2017 - 10:11:27]]></Time>
+<TimeTick>1484745087</TimeTick>
+<Step rID="T21">
+<Obj plainTxt="False" ><![CDATA[Iniciar sesión / Cerrar]]></Obj>
+<Details plainTxt="False" ><![CDATA[Object's physical description:<br>to_class = JavaMenu<br>Label = Iniciar sesión / Cerrar sesión<br>]]></Details>
+<Time><![CDATA[18-01-2017 - 10:11:27]]></Time>
+<TimeTick>1484745087</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="36" status="Warning" nType="Parent description" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="23" >
+<Disp><![CDATA[Iniciar sesión / Cerrar]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="7" nRep="35" status="Failed" nType="Run Error" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="23" >
+<Disp><![CDATA[Iniciar sesión]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T22">
+<Obj plainTxt="False" ><![CDATA[Stop Run]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run stopped by user.]]></Details>
+<Time><![CDATA[18-01-2017 - 10:11:27]]></Time>
+<TimeTick>1484745087</TimeTick>
+<NodeArgs eType="General" icon="9" nRep="37" >
+<Disp><![CDATA[Stop Run]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="30" status="Failed" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="23" >
+<Disp><![CDATA[Iniciar sesión]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="29" status="Failed" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="23" >
+<Disp><![CDATA[Iniciar sesión / Cerrar]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="28" status="Failed" Source="ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact]" SourceLine="23" >
+<Disp><![CDATA[Interact-v7.3-CVT-05Jul16]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="18-01-2017 - 10:08:43" eTime="18-01-2017 - 10:11:27" passed="0" failed="3" warnings="2" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="9" status="Failed" >
+<Disp><![CDATA[ATC_Login_Printer_Sabre_Interact [ATC_Login_Interact] Summary]]></Disp>
+</NodeArgs>
+</Action>
+<NodeArgs eType="StartIteration" icon="3" nRep="6" status="Failed" >
+<Disp><![CDATA[ATC_00030_Emision_Issue Iteration 1 (Row 1)]]></Disp>
+</NodeArgs>
+</DIter>
+<Step rID="T23">
+<Obj plainTxt="False" ><![CDATA[Stop Run]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run stopped by user.]]></Details>
+<Time><![CDATA[18-01-2017 - 10:11:27]]></Time>
+<TimeTick>1484745087</TimeTick>
+<NodeArgs eType="General" icon="10" nRep="40" >
+<Disp><![CDATA[Stop Run]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="18-01-2017 - 10:08:34" eTime="18-01-2017 - 10:11:27" passed="0" failed="3" warnings="2" stopped="True" ></Summary>
+<NodeArgs eType="StartTest" icon="1" nRep="3" status="Failed" >
+<Disp><![CDATA[Test ATC_00030_Emision_Issue Summary]]></Disp>
+</NodeArgs>
+</Doc>
+</Report>
